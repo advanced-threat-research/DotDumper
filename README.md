@@ -1,3 +1,5 @@
+![The DotDumper logo, a dumping truck](images/DotDumper.png)
+
 # DotDumper
 An automatic unpacker and logger for DotNet Framework targeting files! This tool has been unveiled at [Black Hat USA 2022](https://www.blackhat.com/us-22/arsenal/schedule/index.html#dotdumper-automatically-unpacking-dotnet-based-malware-27846).
 
