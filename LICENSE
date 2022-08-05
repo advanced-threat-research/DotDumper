@@ -1,4 +1,6 @@
-DotDumper's code, unless otherwise stated, is licensed under the Apache 2.0 License. The Hook.cs class is based on Michael Pekar's DumbHook.cs class, licensed under the MIT license. Both licenses are given below.
+DotDumper's code, unless otherwise stated, is licensed under the Apache 2.0 License. 
+The Hook.cs class is based on Michael Pekar's DumbHook.cs class, licensed under the
+MIT license. Both licenses are given below.
 
 MIT License
 
