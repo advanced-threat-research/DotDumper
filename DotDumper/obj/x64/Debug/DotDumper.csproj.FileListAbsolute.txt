@@ -1,0 +1,6 @@
+C:\Users\John\Source\Repos\DotDumper\DotDumper\bin\x64\Debug\DotDumper.exe
+C:\Users\John\Source\Repos\DotDumper\DotDumper\bin\x64\Debug\DotDumper.pdb
+C:\Users\John\Source\Repos\DotDumper\DotDumper\obj\x64\Debug\DotDumper.csproj.CoreCompileInputs.cache
+C:\Users\John\Source\Repos\DotDumper\DotDumper\obj\x64\Debug\DotDumper.exe
+C:\Users\John\Source\Repos\DotDumper\DotDumper\obj\x64\Debug\DotDumper.pdb
+C:\Users\John\Source\Repos\DotDumper\DotDumper\obj\x64\Debug\DotDumper.csproj.AssemblyReference.cache

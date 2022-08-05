@@ -1,0 +1,14 @@
+C:\Users\John\Source\Repos\DotDumper\DotDumper\bin\Debug\DotDumper.exe.config
+C:\Users\John\Source\Repos\DotDumper\DotDumper\bin\Debug\DotDumper.exe
+C:\Users\John\Source\Repos\DotDumper\DotDumper\bin\Debug\DotDumper.pdb
+C:\Users\John\Source\Repos\DotDumper\DotDumper\obj\Debug\DotDumper.csproj.AssemblyReference.cache
+C:\Users\John\Source\Repos\DotDumper\DotDumper\obj\Debug\DotDumper.csproj.CoreCompileInputs.cache
+C:\Users\John\Source\Repos\DotDumper\DotDumper\obj\Debug\DotDumper.exe
+C:\Users\John\Source\Repos\DotDumper\DotDumper\obj\Debug\DotDumper.pdb
+C:\Users\John\Source\Repos\2022-04-01-DotDumper\DotDumper\DotDumper\obj\Debug\DotDumper.csproj.AssemblyReference.cache
+C:\Users\John\Source\Repos\2022-04-01-DotDumper\DotDumper\DotDumper\obj\Debug\DotDumper.csproj.CoreCompileInputs.cache
+C:\Users\John\Source\Repos\2022-04-01-DotDumper\DotDumper\DotDumper\obj\Debug\DotDumper.exe
+C:\Users\John\Source\Repos\2022-04-01-DotDumper\DotDumper\DotDumper\obj\Debug\DotDumper.pdb
+C:\Users\John\Source\Repos\2022-04-01-DotDumper\DotDumper\DotDumper\bin\Debug\DotDumper.exe.config
+C:\Users\John\Source\Repos\2022-04-01-DotDumper\DotDumper\DotDumper\bin\Debug\DotDumper.exe
+C:\Users\John\Source\Repos\2022-04-01-DotDumper\DotDumper\DotDumper\bin\Debug\DotDumper.pdb
