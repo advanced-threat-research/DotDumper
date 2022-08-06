@@ -1,4 +1,4 @@
-![The DotDumper logo, a dumping truck](images/DotDumper.png)
+<img src="images/DotDumper.png" alt="The DotDumper logo, a dumping truck" width="610" height="414" />
 
 # DotDumper
 An automatic unpacker and logger for DotNet Framework targeting files! This tool has been unveiled at [Black Hat USA 2022](https://www.blackhat.com/us-22/arsenal/schedule/index.html#dotdumper-automatically-unpacking-dotnet-based-malware-27846).
@@ -92,14 +92,14 @@ Knowing what hooks are is essential to understand what managed hooks are. Manage
 Since DotDumper is written in pure C# without any external dependencies, one can easily extend the framework using Visual Studio. The code is documented in this blog, on GitHub, and in classes, in functions, and in-line in the source code. This, in combination with the clear naming scheme, allows anyone to modify the tool as they see fit, minimizing the time and effort that one needs to spend to understand the tool. Instead, it allows developers and analysts alike to focus their efforts on the tool’s improvement.
 
 ## <a name="differences">Differences with known tooling</a>
-With the goal and features of DotDumper clear, it might seem as if there’s overlap with known publicly available tools such as ILSpy, dnSpyEx, de4dot, or pe-sieve. Note that there is no intention to proclaim one tool is better than another, but rather how the tools differ.
+With the goal and features of DotDumper clear, it might seem as if there’s overlap with known publicly available tools such as [ILSpy](https://github.com/icsharpcode/ILSpy), [dnSpyEx](https://github.com/dnSpyEx/dnSpy), [de4dot](https://github.com/de4dot/de4dot), or [pe-sieve](https://github.com/hasherezade/pe-sieve). Note that there is no intention to proclaim one tool is better than another, but rather how the tools differ.
 
 DotDumper’s goal is to log and dump crucial, contextualizing, and common function calls from DotNet targeting samples. ILSpy is a DotNet disassembler and decompiler, but does not allow the execution of the file. dnSpyEx (and its predecessor dnSpy) utilise ILSpy as the disassembler and decompiler component, while adding a debugger. This allows one to manually inspect and manipulate memory. de4dot is solely used to deobfuscate DotNet binaries, improving the code’s readability for human eyes. The last tool in this comparison, pe-sieve, is meant to detect and dump malware from running processes, disregarding the used programming language. The table below provides a graphical overview of the above-mentioned tools.
 
 ![The table with the different tool purposes in summary](images/tool_table.png)
 
 ## <a name="future_work">Future work</a>
-DotDumper is under constant review and development, all of which is focused on two main areas of interest: bug fixing and the addition of new features. During the development, the code was tested, but due to injection of hooks into the DotNet Framework’s functions which can be subject to change, it’s very well possible that there are bugs in the code. Anyone who encounters a bug is urged to open an issue on the GitHub repository, which will then be looked at. The suggestion of new features is also possible via the GitHub repository. For those with a GitHub account, or for those who rather not publicly interact, feel free to send me a private message on my Twitter.
+DotDumper is under constant review and development, all of which is focused on two main areas of interest: bug fixing and the addition of new features. During the development, the code was tested, but due to injection of hooks into the DotNet Framework’s functions which can be subject to change, it’s very well possible that there are bugs in the code. Anyone who encounters a bug is urged to open an issue on the GitHub repository, which will then be looked at. The suggestion of new features is also possible via the GitHub repository. For those with a GitHub account, or for those who rather not publicly interact, feel free to send me a private message on my [Twitter](https://twitter.com/Libranalysis).
 
 Needless to say, if you've used DotDumper during an analysis, or used it in a creative way, feel free to reach out in public or in private! There’s nothing like hearing about the usage of a home-made tool! 
 
