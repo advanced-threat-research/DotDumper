@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using DotDumper.Helpers;
 using DotDumper.Models;
 using System.Threading;
+using DotDumper.Pipes;
 
 namespace DotDumper
 {
@@ -14,7 +15,7 @@ namespace DotDumper
         /// <summary>
         /// The version information of DotDumper
         /// </summary>
-        public static readonly string VERSION = "DotDumper 1.0-stable by Max 'Libra' Kersten (@Libranalysis)\n";
+        public static readonly string VERSION = "DotDumper 1.1-stable by Max 'Libra' Kersten (@Libranalysis)\n";
 
         /// <summary>
         /// A boolean which is to be changed within the source code. The sole purpose is to load the CLI arguments differently (or rather, load them from hardcoded values when debugging), to easily change them without breaking the argument parsing method
@@ -29,11 +30,15 @@ namespace DotDumper
             }
             else
             {
+                //Parses the given arguments
                 ArgumentHandler.ParseArguments(args);
             }
 
             //Creates the logger object
             GenericHookHelper._Logger = new Logger();
+
+            //Initialises the named pipe manager which handles the named pipe communication
+            PipeManager.Initialise();
 
             //Creates and starts the delayed timer to handle stagnations during the execution
             Timer Timer = new Timer(StagnationHandler.TimerCallback, null, 0, (20 * 1000));
@@ -111,7 +116,7 @@ namespace DotDumper
                     //If no such method can be found, null is returned
                     if (methodInfo == null)
                     {
-                        throw new Exception("No public method found in the given class with the name \"" + Config.DllFunctionName + "\"!");
+                        throw new Exception("No method found in the given class with the name \"" + Config.DllFunctionName + "\"!");
                     }
 
                     //Null when invoking a static method
@@ -122,10 +127,8 @@ namespace DotDumper
                         //Create an instance if the method is not static
                         target = Activator.CreateInstance(type);
                     }
-
                     //Call the function
                     type.InvokeMember(Config.DllFunctionName, BindingFlags.InvokeMethod, null, target, Config.DllArguments);
-                    //assembly.GetType("gx.LV").InvokeMember("OKb", BindingFlags.InvokeMethod, null, null, null);
                 }
             }
             catch (Exception ex) //Catch any exception that is thrown
@@ -137,8 +140,7 @@ namespace DotDumper
             }
             //Remove all hooks, as the sample's execution has finished (or migrated to a different process)
             HookManager.UnHookAll();
-            //Waits for the user to press any key, allowing the console to be read
-            //Console.ReadKey();
+            //Sets the time to a future time to force the sandbo to time out
             StagnationHandler.SetTime();
         }
     }

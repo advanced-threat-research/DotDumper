@@ -19,16 +19,13 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "ResourceManager.GetObject(string name)";
-                HookManager.UnHookByHookName("GetObjectHookString");
                 HookManager.UnHookAll();
                 result = null;
                 try
                 {
                     result = resourceManager.GetObject(name);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
 
                 }
@@ -39,9 +36,8 @@ namespace DotDumper.HookHandlers
                 }
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.ResourceManagerGetObjectString(), new object[] { name }, result);
-                
+
                 HookManager.HookAll();
-                HookManager.HookByHookName("GetObjectHookString");
             }
 
             //Return the process object to the caller
@@ -57,10 +53,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "ResourceManager.GetObject(string name, CultureInfo cultureInfo)";
-
-                HookManager.UnHookByHookName("GetObjectHookStringCultureInfo");
                 HookManager.UnHookAll();
 
                 result = null;
@@ -68,7 +60,7 @@ namespace DotDumper.HookHandlers
                 {
                     result = resourceManager.GetObject(name, cultureInfo);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
 
                 }
@@ -79,8 +71,7 @@ namespace DotDumper.HookHandlers
                 }
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.ResourceManagerGetObjectStringCultureInfo(), new object[] { name, cultureInfo }, result);
-                
-                HookManager.HookByHookName("GetObjectHookStringCultureInfo");
+
                 HookManager.HookAll();
             }
 
@@ -97,22 +88,13 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "ResourceManager.GetString(string name, CultureInfo cultureInfo)";
-
-                /**
-                 * The GetString(string name) function wraps around GetString(string name, CultureInfo cultureInfo) function
-                 * meaning that one hook would call the next, causing clutter, hence the double unhook and double rehook
-                 */
-                HookManager.UnHookByHookName("GetStringHookString");
-                HookManager.UnHookByHookName("GetStringHookStringCultureInfo");
                 HookManager.UnHookAll();
                 result = null;
                 try
                 {
                     result = resourceManager.GetString(name);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
 
                 }
@@ -124,8 +106,6 @@ namespace DotDumper.HookHandlers
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.ResourceManagerGetStringString(), new object[] { name }, result);
 
-                HookManager.HookByHookName("GetStringHookString");
-                HookManager.HookByHookName("GetStringHookStringCultureInfo");
                 HookManager.HookAll();
             }
 
@@ -142,10 +122,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "ResourceManager.GetString(string name, CultureInfo cultureInfo)";
-
-                HookManager.UnHookByHookName("GetStringHookStringCultureInfo");
                 HookManager.UnHookAll();
 
                 result = null;
@@ -153,7 +129,7 @@ namespace DotDumper.HookHandlers
                 {
                     result = resourceManager.GetString(name, cultureInfo);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
 
                 }
@@ -165,7 +141,6 @@ namespace DotDumper.HookHandlers
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.ResourceManagerGetStringStringCultureInfo(), new object[] { name, cultureInfo }, result);
 
-                HookManager.HookByHookName("GetStringHookStringCultureInfo");
                 HookManager.HookAll();
             }
 
@@ -182,9 +157,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "ResourceManager.GetStream(string name)";
-                HookManager.UnHookByHookName("GetStreamHookString");
                 HookManager.UnHookAll();
 
                 result = null;
@@ -192,7 +164,7 @@ namespace DotDumper.HookHandlers
                 {
                     result = resourceManager.GetStream(name);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
 
                 }
@@ -204,7 +176,6 @@ namespace DotDumper.HookHandlers
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.ResourceManagerGetStreamString(), new object[] { name }, result);
 
-                HookManager.HookByHookName("GetStreamHookString");
                 HookManager.HookAll();
             }
 
@@ -221,11 +192,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "ResourceManager.GetStream(string name, CultureInfo cultureInfo)";
-                //Process the given data via the helper class
-                ResourceManagerHooksHelper.Handle(functionName, name);
-                HookManager.UnHookByHookName("GetStreamHookStringCultureInfo");
                 HookManager.UnHookAll();
 
                 result = null;
@@ -233,7 +199,7 @@ namespace DotDumper.HookHandlers
                 {
                     result = resourceManager.GetStream(name, cultureInfo);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
 
                 }
@@ -245,7 +211,6 @@ namespace DotDumper.HookHandlers
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.ResourceManagerGetStreamStringCultureInfo(), new object[] { name, cultureInfo }, result);
 
-                HookManager.HookByHookName("GetStreamHookStringCultureInfo");
                 HookManager.HookAll();
             }
 
@@ -274,7 +239,7 @@ namespace DotDumper.HookHandlers
                             return result;
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         //Ignore exceptions, as this function returns null if the resource cannot be found
                     }
@@ -305,7 +270,7 @@ namespace DotDumper.HookHandlers
                             return result;
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         //Ignore exceptions, as this function returns null if the resource cannot be found
                     }
@@ -336,7 +301,7 @@ namespace DotDumper.HookHandlers
                             return result;
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         //Ignore exceptions, as this function returns null if the resource cannot be found
                     }

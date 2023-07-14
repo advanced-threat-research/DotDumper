@@ -22,10 +22,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("FileAppendAllLinesHookStringIenumerableString");
 
-                //Sets the title for the log
-                string functionName = "File.AppendAllLines(string path, IEnumerable<string> contents)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileAppendAllLinesStringIenumerableString(), new object[] { path, contents }, null);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileAppendAllLinesStringIenumerableString(), new object[] { path, contents }, null);
             }
         }
 
@@ -42,10 +40,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("FileAppendAllLinesHookStringIenumerableStringEncoding");
 
-                //Sets the title for the log
-                string functionName = "File.AppendAllLines(string path, IEnumerable<string> contents, Encoding encoding)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileAppendAllLinesStringIenumerableString(), new object[] { path, contents, encoding }, null);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileAppendAllLinesStringIenumerableString(), new object[] { path, contents, encoding }, null);
             }
         }
 
@@ -62,10 +58,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("FileAppendAllTextHookStringStringEncoding");
 
-                //Sets the title for the log
-                string functionName = "File.AppendAllText(string path, string contents, Encoding encoding)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileAppendAllTextStringStringEncoding(), new object[] { path, contents, encoding }, null);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileAppendAllTextStringStringEncoding(), new object[] { path, contents, encoding }, null);
             }
         }
 
@@ -82,10 +76,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("FileAppendAllTextHookStringString");
 
-                //Sets the title for the log
-                string functionName = "File.AppendAllText(string path, string contents)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileAppendAllTextStringString(), new object[] { path, contents }, null);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileAppendAllTextStringString(), new object[] { path, contents }, null);
             }
         }
 
@@ -105,10 +97,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("FileAppendTextHookString");
 
-                //Sets the title for the log
-                string functionName = "File.AppendText(string path)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileAppendTextString(), new object[] { path }, stream);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileAppendTextString(), new object[] { path }, stream);
             }
 
             //Return the object to the caller
@@ -131,10 +121,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("CopyHookStringString");
 
-                //Sets the title for the log
-                string functionName = "File.Copy(string sourceFileName, string destFileName)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileCopyStringString(), new object[] { sourceFileName, destFileName }, null);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileCopyStringString(), new object[] { sourceFileName, destFileName }, null);
             }
         }
 
@@ -151,10 +139,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("CopyHookStringStringBoolean");
 
-                //Sets the title for the log
-                string functionName = "File.Copy(string sourceFileName, string destFileName, bool overwrite)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileCopyStringStringBoolean(), new object[] { sourceFileName, destFileName, overwrite }, null);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileCopyStringStringBoolean(), new object[] { sourceFileName, destFileName, overwrite }, null);
             }
         }
 
@@ -174,10 +160,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("CreateHookString");
 
-                //Sets the title for the log
-                string functionName = "File.Create(string path)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileCreateString(), new object[] { path }, stream);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileCreateString(), new object[] { path }, stream);
             }
 
             //Return the object to the caller
@@ -200,10 +184,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("CreateHookStringInt");
 
-                //Sets the title for the log
-                string functionName = "File.Create(string path, int bufferSize)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileCreateStringInt(), new object[] { path, bufferSize }, stream);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileCreateStringInt(), new object[] { path, bufferSize }, stream);
             }
 
             //Return the object to the caller
@@ -226,10 +208,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("CreateHookStringIntFileOptions");
 
-                //Sets the title for the log
-                string functionName = "File.Create(string path, int bufferSize, FileOptions fileOptions)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileCreateStringIntFileOptions(), new object[] { path, bufferSize, fileOptions }, stream);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileCreateStringIntFileOptions(), new object[] { path, bufferSize, fileOptions }, stream);
             }
 
             //Return the object to the caller
@@ -252,10 +232,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("CreateHookStringIntFileOptionsFileSecurity");
 
-                //Sets the title for the log
-                string functionName = "File.Create(string path, int bufferSize, FileOptions fileOptions, FileSecurity fileSecurity)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileCreateStringIntFileOptionsFileSecurity(), new object[] { path, bufferSize, fileOptions, fileSecurity }, stream);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileCreateStringIntFileOptionsFileSecurity(), new object[] { path, bufferSize, fileOptions, fileSecurity }, stream);
             }
 
             //Return the object to the caller
@@ -278,10 +256,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("CreateTextHookString");
 
-                //Sets the title for the log
-                string functionName = "File.CreateText(string path)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileCreateTextString(), new object[] { path }, stream);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileCreateTextString(), new object[] { path }, stream);
             }
 
             //Return the object to the caller
@@ -301,10 +277,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("DecryptHookString");
 
-                //Sets the title for the log
-                string functionName = "File.Decrypt(string path)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileDecryptString(), new object[] { path }, null);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileDecryptString(), new object[] { path }, null);
             }
         }
 
@@ -321,10 +295,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("DeleteHookString");
 
-                //Sets the title for the log
-                string functionName = "File.Delete(string path)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileDeleteString(), new object[] { path }, null);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileDeleteString(), new object[] { path }, null);
             }
         }
 
@@ -341,10 +313,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("EncryptHookString");
 
-                //Sets the title for the log
-                string functionName = "File.Encrypt(string path)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileEncryptString(), new object[] { path }, null);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileEncryptString(), new object[] { path }, null);
             }
         }
 
@@ -364,8 +334,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("ExiststHookString");
 
-                //Sets the title for the log
-                string functionName = "File.Exists(string path)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileExiststString(), new object[] { path }, result);
             }
@@ -387,10 +355,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("MoveHookStringString");
 
-                //Sets the title for the log
-                string functionName = "File.Move(string sourceFileName, string destFileName)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileMoveStringString(), new object[] { sourceFileName, destFileName }, null);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileMoveStringString(), new object[] { sourceFileName, destFileName }, null);
             }
         }
 
@@ -410,10 +376,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("OpenHookStringFileModeFileAccessFileShare");
 
-                //Sets the title for the log
-                string functionName = "File.Open(string path, FileMode mode, FileAccess access, FileShare share)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileOpenStringFileModeFileAccessFileShare(), new object[] { path, mode, access, share }, stream);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileOpenStringFileModeFileAccessFileShare(), new object[] { path, mode, access, share }, stream);
             }
 
             //Return the object to the caller
@@ -436,10 +400,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("OpenHookStringFileModeFileAccess");
 
-                //Sets the title for the log
-                string functionName = "File.Open(string path, FileMode mode, FileAccess access)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileOpenStringFileModeFileAccess(), new object[] { path, mode, access }, stream);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileOpenStringFileModeFileAccess(), new object[] { path, mode, access }, stream);
             }
 
             //Return the object to the caller
@@ -462,10 +424,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("OpenHookStringFileMode");
 
-                //Sets the title for the log
-                string functionName = "File.Open(string path, FileMode mode)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileOpenStringFileMode(), new object[] { path, mode }, stream);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileOpenStringFileMode(), new object[] { path, mode }, stream);
             }
 
             //Return the object to the caller
@@ -488,10 +448,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("OpenTextHookString");
 
-                //Sets the title for the log
-                string functionName = "File.OpenText(string path)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileOpenTextString(), new object[] { path }, stream);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileOpenTextString(), new object[] { path }, stream);
             }
 
             //Return the object to the caller
@@ -514,10 +472,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("OpenWriteHookString");
 
-                //Sets the title for the log
-                string functionName = "File.OpenWrite(string path)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileOpenWriteString(), new object[] { path }, stream);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileOpenWriteString(), new object[] { path }, stream);
             }
 
             //Return the object to the caller
@@ -540,10 +496,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("ReadAllLinesHookString");
 
-                //Sets the title for the log
-                string functionName = "File.ReadAllLines(string path)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileReadAllLinesString(), new object[] { path }, lines);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileReadAllLinesString(), new object[] { path }, lines);
             }
 
             //Return the object to the caller
@@ -566,10 +520,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("ReadAllLinesHookStringEncoding");
 
-                //Sets the title for the log
-                string functionName = "File.ReadAllLines(string path, Encoding encoding)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileReadAllLinesStringEncoding(), new object[] { path, encoding }, lines);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileReadAllLinesStringEncoding(), new object[] { path, encoding }, lines);
             }
 
             //Return the object to the caller
@@ -592,10 +544,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("ReadAllTextHookStringEncoding");
 
-                //Sets the title for the log
-                string functionName = "File.ReadAllText(string path, Encoding encoding)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileReadAllTextStringEncoding(), new object[] { path, encoding }, text);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileReadAllTextStringEncoding(), new object[] { path, encoding }, text);
             }
 
             //Return the object to the caller
@@ -618,10 +568,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("ReadAllTextHookString");
 
-                //Sets the title for the log
-                string functionName = "File.ReadAllText(string path)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileReadAllTextString(), new object[] { path }, text);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileReadAllTextString(), new object[] { path }, text);
             }
 
             //Return the object to the caller
@@ -644,10 +592,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("ReadLinesHookString");
 
-                //Sets the title for the log
-                string functionName = "File.ReadLines(string path)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileReadLinesString(), new object[] { path }, lines);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileReadLinesString(), new object[] { path }, lines);
             }
 
             //Return the object to the caller
@@ -670,10 +616,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("ReadLinesHookStringEncoding");
 
-                //Sets the title for the log
-                string functionName = "File.ReadLines(string path, Encoding encoding)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileReadLinesStringEncoding(), new object[] { path, encoding }, lines);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileReadLinesStringEncoding(), new object[] { path, encoding }, lines);
             }
 
             //Return the object to the caller
@@ -693,10 +637,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("ReplaceHookStringStringString");
 
-                //Sets the title for the log
-                string functionName = "File.Replace(string sourceFileName, string destinationFileName, string destinationBackupFileName)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileReplaceStringStringString(), new object[] { sourceFileName, destinationFileName, destinationBackupFileName }, null);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileReplaceStringStringString(), new object[] { sourceFileName, destinationFileName, destinationBackupFileName }, null);
             }
         }
 
@@ -713,10 +655,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("ReplaceHookStringStringStringBoolean");
 
-                //Sets the title for the log
-                string functionName = "File.Replace(string sourceFileName, string destinationFileName, string destinationBackupFileName)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileReplaceStringStringStringBoolean(), new object[] { sourceFileName, destinationFileName, destinationBackupFileName, ignoreMetadataErrors }, null);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileReplaceStringStringStringBoolean(), new object[] { sourceFileName, destinationFileName, destinationBackupFileName, ignoreMetadataErrors }, null);
             }
         }
 
@@ -733,10 +673,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("SetAccessControlHookStringFileSecurity");
 
-                //Sets the title for the log
-                string functionName = "File.SetAccessControl(string path, FileSecurity fileSecurity)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileSetAccessControlStringFileSecurity(), new object[] { path, fileSecurity }, null);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileSetAccessControlStringFileSecurity(), new object[] { path, fileSecurity }, null);
             }
         }
 
@@ -753,10 +691,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("SetAttributesHookStringFileAttributes");
 
-                //Sets the title for the log
-                string functionName = "File.SetAttributes(string path, FileAttributes fileAttributes)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileSetAttributesStringFileAttributes(), new object[] { path, fileAttributes }, null);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileSetAttributesStringFileAttributes(), new object[] { path, fileAttributes }, null);
             }
         }
 
@@ -773,10 +709,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("WriteAllBytesHookStringByteArray");
 
-                //Sets the title for the log
-                string functionName = "File.WriteAllBytes(string path, byte[] bytes)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileWriteAllBytesStringByteArray(), new object[] { path, bytes }, null);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileWriteAllBytesStringByteArray(), new object[] { path, bytes }, null);
             }
         }
 
@@ -793,10 +727,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("WriteAllLinesHookStringStringArray");
 
-                //Sets the title for the log
-                string functionName = "File.WriteAllLines(string path, string[] lines)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileWriteAllLinesStringStringArray(), new object[] { path, lines }, null);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileWriteAllLinesStringStringArray(), new object[] { path, lines }, null);
             }
         }
 
@@ -813,10 +745,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("WriteAllLinesHookStringStringArrayEncoding");
 
-                //Sets the title for the log
-                string functionName = "File.WriteAllLines(string path, string[] lines, Encoding encoding)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileWriteAllLinesStringStringArrayEncoding(), new object[] { path, lines, encoding }, null);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileWriteAllLinesStringStringArrayEncoding(), new object[] { path, lines, encoding }, null);
             }
         }
 
@@ -833,10 +763,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("WriteAllLinesHookStringIenumerableString");
 
-                //Sets the title for the log
-                string functionName = "File.WriteAllLines(string path, IEnumerable<string> contents)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileWriteAllLinesStringIenumerableString(), new object[] { path, contents }, null);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileWriteAllLinesStringIenumerableString(), new object[] { path, contents }, null);
             }
         }
 
@@ -853,10 +781,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("WriteAllLinesHookStringIenumerableStringEncoding");
 
-                //Sets the title for the log
-                string functionName = "File.WriteAllLines(string path, IEnumerable<string> contents, Encoding encoding)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileWriteAllLinesStringIenumerableStringEncoding(), new object[] { path, contents, encoding }, null);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileWriteAllLinesStringIenumerableStringEncoding(), new object[] { path, contents, encoding }, null);
             }
         }
 
@@ -873,10 +799,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("WriteAllTextHookStringString");
 
-                //Sets the title for the log
-                string functionName = "File.WriteAllText(string path, string contents)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileWriteAllTextStringString(), new object[] { path, contents }, null);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileWriteAllTextStringString(), new object[] { path, contents }, null);
             }
         }
 
@@ -893,10 +817,8 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("WriteAllTextHookStringStringEncoding");
 
-                //Sets the title for the log
-                string functionName = "File.WriteAllText(string path, string contents, Encoding encoding)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileWriteAllTextStringStringEncoding(), new object[] { path, contents, encoding }, null);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileWriteAllTextStringStringEncoding(), new object[] { path, contents, encoding }, null);
             }
         }
 
@@ -910,16 +832,14 @@ namespace DotDumper.HookHandlers
             lock (GenericHookHelper.SyncLock)
             {
                 //Disable the placed hook
-                HookManager.UnHookByHookName("WriteAllTextHookStringStringEncoding");
+                HookManager.UnHookByHookName("ReadAllBytesHookString");
                 //Call the original function
                 bytes = File.ReadAllBytes(path);
                 //Restore the hook
-                HookManager.HookByHookName("WriteAllTextHookStringStringEncoding");
+                HookManager.HookByHookName("ReadAllBytesHookString");
 
-                //Sets the title for the log
-                string functionName = "File.ReadAllBytes(string path)";
                 //Write the aggregated data to the log and the console
-                GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.FileReadAllBytesString(), new object[] { path }, bytes);
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.FileReadAllBytesString(), new object[] { path }, bytes);
             }
 
             //Return the object to the caller

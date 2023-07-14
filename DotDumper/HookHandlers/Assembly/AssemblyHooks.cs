@@ -37,9 +37,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("LoadHookByteArray");
 
-
-                //Sets the title for the log
-                string functionName = "Assembly.Load(byte[] rawAssembly)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.AssemblyLoadByteArray(), new object[] { rawAssembly }, assembly);
             }
@@ -64,8 +61,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("LoadHookString");
 
-                //Sets the title for the log
-                string functionName = "Assembly.Load(string assemblyString)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.AssemblyLoadString(), new object[] { assemblyString }, assembly);
             }
@@ -90,8 +85,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("LoadHookStringEvidence");
 
-                //Sets the title for the log
-                string functionName = "Assembly.Load(String assemblyString, Evidence assemblySecurity)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.AssemblyLoadStringEvidence(), new object[] { assemblyString, assemblySecurity }, assembly);
             }
@@ -116,8 +109,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("LoadHookByteArrayByteArrayEvidence");
 
-                //Sets the title for the log
-                string functionName = "Assembly.Load(byte[] rawAssembly, byte[] rawSymbolStore, Evidence securityEvidence)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.AssemblyLoadByteArrayByteArrayEvidence(), new object[] { rawAssembly, rawSymbolStore, securityEvidence }, assembly);
             }
@@ -142,8 +133,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("LoadHookAssemblyName");
 
-                //Sets the title for the log
-                string functionName = "Assembly.Load(AssemblyName assemblyRef)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.AssemblyLoadAssemblyName(), new object[] { assemblyRef }, assembly);
             }
@@ -168,8 +157,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("LoadHookAssemblyNameEvidence");
 
-                //Sets the title for the log
-                string functionName = "Assembly.Load(AssemblyName assemblyRef, Evidence assemblySecurity)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.AssemblyLoadAssemblyNameEvidence(), new object[] { assemblyRef, assemblySecurity }, assembly);
             }
@@ -194,8 +181,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("LoadHookByteArrayByteArraySecurityContextSource");
 
-                //Sets the title for the log
-                string functionName = "Assembly.Load(byte[] rawAssembly, byte[] rawSymbolStore, SecurityContextSource securityContextSource)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.AssemblyLoadByteArrayByteArraySecurityContextSource(), new object[] { rawAssembly, rawSymbolStore, securityContextSource }, assembly);
             }
@@ -220,8 +205,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("LoadHookByteArrayByteArray");
 
-                //Sets the title for the log
-                string functionName = "Assembly.Load(byte[] rawAssembly, byte[] rawSymbolStore)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.AssemblyLoadByteArrayByteArray(), new object[] { rawAssembly, rawSymbolStore }, assembly);
             }
@@ -246,8 +229,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("LoadFileHookString");
 
-                //Sets the title for the log
-                string functionName = "Assembly.LoadFile(string path)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.AssemblyLoadFileString(), new object[] { path }, assembly);
             }
@@ -272,8 +253,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("LoadFileHookStringEvidence");
 
-                //Sets the title for the log
-                string functionName = "Assembly.LoadFile(string path, Evidence securityEvidence)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.AssemblyLoadFileStringEvidence(), new object[] { path, securityEvidence }, assembly);
             }
@@ -299,8 +278,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("LoadFromHookString");
 
-                //Sets the title for the log
-                string functionName = "Assembly.LoadFrom(string assemblyFile)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.AssemblyLoadFromString(), new object[] { assemblyFile }, assembly);
             }
@@ -325,8 +302,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("LoadFromHookStringEvidence");
 
-                //Sets the title for the log
-                string functionName = "Assembly.LoadFrom(string assemblyFile, Evidence securityEvidence)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.AssemblyLoadFromStringEvidence(), new object[] { assemblyFile, securityEvidence }, assembly);
             }
@@ -352,8 +327,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("LoadFromHookStringEvidenceByteArrayAssemblyHashAlgorithm");
 
-                //Sets the title for the log
-                string functionName = "Assembly.LoadFrom(string assemblyFile, Evidence securityEvidence, byte[] hashValue, AssemblyHashAlgorithm hashAlgorithm)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.AssemblyLoadFromStringEvidenceByteArrayAssemblyHashAlgorithm(), new object[] { assemblyFile, securityEvidence, hashValue, hashAlgorithm }, assembly);
             }
@@ -378,8 +351,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("LoadFromHookStringByteArrayAssemblyHashAlgorithm");
 
-                //Sets the title for the log
-                string functionName = "Assembly.LoadFrom(string assemblyFile, byte[] hashValue, AssemblyHashAlgorithm hashAlgorithm)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.AssemblyLoadFromStringByteArrayAssemblyHashAlgorithm(), new object[] { assemblyFile, hashValue, hashAlgorithm }, assembly);
             }
@@ -404,8 +375,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("LoadWithPartialNameHookStringEvidence");
 
-                //Sets the title for the log
-                string functionName = "Assembly.LoadWithPartialName(string partialName, Evidence securityEvidence)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.AssemblyLoadWithPartialNameStringEvidence(), new object[] { partialName, securityEvidence }, assembly);
             }
@@ -430,8 +399,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("LoadWithPartialNameHookString");
 
-                //Sets the title for the log
-                string functionName = "Assembly.LoadWithPartialName(string partialName)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.AssemblyLoadWithPartialNameString(), new object[] { partialName }, assembly);
             }
@@ -456,8 +423,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("ReflectionOnlyLoadHookString");
 
-                //Sets the title for the log
-                string functionName = "Assembly.ReflectionOnlyLoad(string assemblyString)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.AssemblyReflectionOnlyLoadString(), new object[] { assemblyString }, assembly);
             }
@@ -482,8 +447,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("ReflectionOnlyLoadHookByteArray");
 
-                //Sets the title for the log
-                string functionName = "Assembly.ReflectionOnlyLoad(byte[] rawAssembly)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.AssemblyReflectionOnlyLoadByteArray(), new object[] { rawAssembly }, assembly);
             }
@@ -508,8 +471,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("ReflectionOnlyLoadFromHookString");
 
-                //Sets the title for the log
-                string functionName = "Assembly.ReflectionOnlyLoadFrom(string assemblyFile)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.AssemblyReflectionOnlyLoadFromString(), new object[] { assemblyFile }, assembly);
             }
@@ -534,8 +495,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("UnsafeLoadFromHookString");
 
-                //Sets the title for the log
-                string functionName = "Assembly.UnsafeLoadFrom(string assemblyFile)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.AssemblyUnsafeLoadFromString(), new object[] { assemblyFile }, assembly);
             }

@@ -60,6 +60,11 @@ namespace DotDumper.HookHandlers
             return result;
         }
 
+        /// <summary>
+        /// Gets the stack trace, based on the given offset
+        /// </summary>
+        /// <param name="offset">the number of calls since the original function has been called</param>
+        /// <returns>A list of strings that make up the stack trace. All hooks will be set prior to this function's return</returns>
         public static List<string> GetStackTraceRaw(int offset)
         {
             HookManager.UnHookAll();
@@ -116,8 +121,15 @@ namespace DotDumper.HookHandlers
             string md5 = Hashes.Md5(data);
             string sha1 = Hashes.Sha1(data);
             string sha256 = Hashes.Sha256(data);
+            string sha384 = Hashes.Sha384(data);
+            string sha512 = Hashes.Sha512(data);
+            string typeRef = Hashes.TypeRef(data);
+            string importHash = Hashes.ImportHash(data);
+            string authenticodeSha256 = Hashes.AuthenticodeSha256(data);
+
             string path = SaveFile(sha256, data);
-            return Tuple.Create(path, new Models.Hash(md5, sha1, sha256));
+
+            return Tuple.Create(path, new Models.Hash(md5, sha1, sha256, sha384, sha512, typeRef, importHash, authenticodeSha256));
         }
 
         /// <summary>

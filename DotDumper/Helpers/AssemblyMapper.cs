@@ -33,7 +33,7 @@ namespace DotDumper.Helpers
         }
 
         /// <summary>
-        /// Creates the mapping as a dictionary where the keys equal a function signature as a string, and an assembly object as the value
+        /// Creates the mapping as a dictionary where the keys equal a function signature as a string, and an assembly object as the value. Hooks are set prior to returning from this function!
         /// </summary>
         /// <returns>The mapping to use when matching a (line of a) stack trace</returns>
         public static Dictionary<string, Assembly> CreateMapping()
@@ -101,13 +101,13 @@ namespace DotDumper.Helpers
         public static string ProcessStackTraceOld(List<string> stackTraceLines)
         {
             string output = "";
-
-            string currentItem = "";
             string lastItem = "";
 
             foreach (string stackTraceLine in stackTraceLines)
             {
                 Assembly assembly = ProcessStackTraceLine(stackTraceLine);
+
+                string currentItem;
                 if (assembly != null)
                 {
                     currentItem = assembly.FullName;
@@ -183,8 +183,9 @@ namespace DotDumper.Helpers
         /// <returns>True if the most recent call is coming from a sample stage, false if it is coming from DotDumper, or a GAC module</returns>
         public static bool IsComingFromSample(List<string> stackTraceLines)
         {
-            //Get the last call from the trace, as this is the origin of the hook location
-            //Use the last call from the trace to check if it matches any key in the mapping
+            /*
+             * Get the last call from the trace, as this is the origin of the hook location. Use the last call from the trace to check if it matches any key in the mapping
+             */
             Assembly assembly = ProcessStackTraceLine(stackTraceLines[0]);
             if (assembly == null)
             {

@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
 using DotDumper.Hooks;
 
 namespace DotDumper.HookHandlers
@@ -11,10 +12,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.Write(string value)";
-                //Create the message, where both the type and value are printed
-                string message = "Value: " + value;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteString(), new object[] { value }, null);
             }
@@ -26,11 +23,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.Write(object value)";
-                //Create the message, where both the type and value are printed
-                string message = "Type: " + value.GetType().FullName + "\n" +
-                    "Value: " + value;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteObject(), new object[] { value }, null);
             }
@@ -42,10 +34,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.Write(ulong value)";
-                //Create the message, where both the type and value are printed
-                string message = "Value: " + value;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteUlong(), new object[] { value }, null);
             }
@@ -57,10 +45,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.Write(long value)";
-                //Create the message, where both the type and value are printed
-                string message = "Value: " + value;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteLong(), new object[] { value }, null);
             }
@@ -72,10 +56,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.Write(int value)";
-                //Create the message, where both the type and value are printed
-                string message = "Value: " + value;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteInt(), new object[] { value }, null);
             }
@@ -87,10 +67,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.Write(uint value)";
-                //Create the message, where both the type and value are printed
-                string message = "Value: " + value;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteUint(), new object[] { value }, null);
             }
@@ -102,10 +78,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.Write(bool value)";
-                //Create the message, where both the type and value are printed
-                string message = "Value: " + value;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteBool(), new object[] { value }, null);
             }
@@ -117,10 +89,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.Write(char value)";
-                //Create the message, where both the type and value are printed
-                string message = "Value: " + value;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteChar(), new object[] { value }, null);
             }
@@ -132,10 +100,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.Write(decimal value)";
-                //Create the message, where both the type and value are printed
-                string message = "Value: " + value;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteDecimal(), new object[] { value }, null);
             }
@@ -147,10 +111,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.Write(float value)";
-                //Create the message, where both the type and value are printed
-                string message = "Value: " + value;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteFloat(), new object[] { value }, null);
             }
@@ -162,10 +122,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.Write(double value)";
-                //Create the message, where both the type and value are printed
-                string message = "Value: " + value;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteDouble(), new object[] { value }, null);
             }
@@ -177,11 +133,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.Write(string format, object arg0)";
-                //Create the message, where both the type and value are printed
-                string message = "Raw string: " + format + "\n" +
-                     "Format argument (of type " + arg0.GetType().FullName + "): " + arg0;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteStringObject(), new object[] { format, arg0 }, null);
             }
@@ -193,12 +144,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.Write(string format, object arg0, object arg1)";
-                //Create the message, where both the type and value are printed
-                string message = "Raw string: " + format + "\n" +
-                    "Format argument (of type " + arg0.GetType().FullName + "): " + arg0 + "\n" +
-                    "Format argument (of type " + arg1.GetType().FullName + "): " + arg1;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteStringObjectObject(), new object[] { format, arg0, arg1 }, null);
             }
@@ -210,13 +155,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.Write(string format, object arg0, object arg1, object arg2)";
-                //Create the message, where both the type and value are printed
-                string message = "Raw string: " + format + "\n" +
-                    "Format argument (of type " + arg0.GetType().FullName + "): " + arg0 + "\n" +
-                    "Format argument (of type " + arg1.GetType().FullName + "): " + arg1 +
-                    "Format argument (of type " + arg2.GetType().FullName + "): " + arg2;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteStringObjectObjectObject(), new object[] { format, arg0, arg1, arg2 }, null);
             }
@@ -228,14 +166,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.Write(string format, object arg0, object arg1, object arg2, object arg3)";
-                //Create the message, where both the type and value are printed
-                string message = "Raw string: " + format + "\n" +
-                    "Format argument (of type " + arg0.GetType().FullName + "): " + arg0 + "\n" +
-                    "Format argument (of type " + arg1.GetType().FullName + "): " + arg1 +
-                    "Format argument (of type " + arg2.GetType().FullName + "): " + arg2 + "\n" +
-                    "Format argument (of type " + arg3.GetType().FullName + "): " + arg3;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteStringObjectObjectObjectObject(), new object[] { format, arg0, arg1, arg2, arg3 }, null);
             }
@@ -247,14 +177,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.Write(string format, params object[] arg)";
-                //Create the message, where both the type and value are printed
-                string message = "Raw string: " + format + "\n";
-                foreach (object item in arg)
-                {
-                    message += "Format argument (of type " + item.GetType().FullName + "): " + item + "\n";
-                }
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteStringObjectArray(), new object[] { format, arg }, null);
             }
@@ -266,10 +188,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.Write(char[] buffer)";
-                //Create the message, where both the type and value are printed
-                string message = "Raw string: " + new string(buffer) + "\n";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteCharArray(), new object[] { buffer }, null);
             }
@@ -281,11 +199,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.Write(char[] buffer)";
-                //Create the message, where both the type and value are printed
-                string message = "Raw string: " + new string(buffer) + "\n" +
-                    "Selected string: " + new string(buffer).Substring(index, count) + "\n";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteCharArrayIntInt(), new object[] { buffer, index, count }, null);
             }
@@ -297,10 +210,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.WriteLine(string value)";
-                //Create the message, where both the type and value are printed
-                string message = "Value: " + value;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteString(), new object[] { value }, null);
             }
@@ -312,11 +221,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.WriteLine(object value)";
-                //Create the message, where both the type and value are printed
-                string message = "Type: " + value.GetType().FullName + "\n" +
-                    "Value: " + value;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteLineObject(), new object[] { value }, null);
             }
@@ -328,10 +232,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.WriteLine(ulong value)";
-                //Create the message, where both the type and value are printed
-                string message = "Value: " + value;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteLineUlong(), new object[] { value }, null);
             }
@@ -343,10 +243,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.WriteLine(long value)";
-                //Create the message, where both the type and value are printed
-                string message = "Value: " + value;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteLineLong(), new object[] { value }, null);
             }
@@ -358,10 +254,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.WriteLine(int value)";
-                //Create the message, where both the type and value are printed
-                string message = "Value: " + value;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteLineInt(), new object[] { value }, null);
             }
@@ -373,10 +265,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.WriteLine(uint value)";
-                //Create the message, where both the type and value are printed
-                string message = "Value: " + value;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteLineUint(), new object[] { value }, null);
             }
@@ -388,10 +276,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.WriteLine(bool value)";
-                //Create the message, where both the type and value are printed
-                string message = "Value: " + value;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteLineBool(), new object[] { value }, null);
             }
@@ -403,10 +287,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.WriteLine(char value)";
-                //Create the message, where both the type and value are printed
-                string message = "Value: " + value;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteLineChar(), new object[] { value }, null);
             }
@@ -418,10 +298,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.WriteLine(decimal value)";
-                //Create the message, where both the type and value are printed
-                string message = "Value: " + value;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteLineDecimal(), new object[] { value }, null);
             }
@@ -433,10 +309,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.WriteLine(float value)";
-                //Create the message, where both the type and value are printed
-                string message = "Value: " + value;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteLineFloat(), new object[] { value }, null);
             }
@@ -448,10 +320,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.WriteLine(double value)";
-                //Create the message, where both the type and value are printed
-                string message = "Value: " + value;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteLineDouble(), new object[] { value }, null);
             }
@@ -463,11 +331,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.WriteLine(string format, object arg0)";
-                //Create the message, where both the type and value are printed
-                string message = "Raw string: " + format + "\n" +
-                     "Format argument (of type " + arg0.GetType().FullName + "): " + arg0;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteLineStringObject(), new object[] { format, arg0 }, null);
             }
@@ -479,12 +342,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.WriteLine(string format, object arg0, object arg1)";
-                //Create the message, where both the type and value are printed
-                string message = "Raw string: " + format + "\n" +
-                    "Format argument (of type " + arg0.GetType().FullName + "): " + arg0 + "\n" +
-                    "Format argument (of type " + arg1.GetType().FullName + "): " + arg1;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteLineStringObjectObject(), new object[] { format, arg0, arg1 }, null);
             }
@@ -496,13 +353,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.WriteLine(string format, object arg0, object arg1, object arg2)";
-                //Create the message, where both the type and value are printed
-                string message = "Raw string: " + format + "\n" +
-                    "Format argument (of type " + arg0.GetType().FullName + "): " + arg0 + "\n" +
-                    "Format argument (of type " + arg1.GetType().FullName + "): " + arg1 +
-                    "Format argument (of type " + arg2.GetType().FullName + "): " + arg2;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteLineStringObjectObjectObject(), new object[] { format, arg0, arg1, arg2 }, null);
             }
@@ -514,14 +364,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.WriteLine(string format, object arg0, object arg1, object arg2, object arg3)";
-                //Create the message, where both the type and value are printed
-                string message = "Raw string: " + format + "\n" +
-                    "Format argument (of type " + arg0.GetType().FullName + "): " + arg0 + "\n" +
-                    "Format argument (of type " + arg1.GetType().FullName + "): " + arg1 +
-                    "Format argument (of type " + arg2.GetType().FullName + "): " + arg2 + "\n" +
-                    "Format argument (of type " + arg3.GetType().FullName + "): " + arg3;
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteLineStringObjectObjectObjectObject(), new object[] { format, arg0, arg1, arg2, arg3 }, null);
             }
@@ -533,14 +375,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.WriteLine(string format, params object[] arg)";
-                //Create the message, where both the type and value are printed
-                string message = "Raw string: " + format + "\n";
-                foreach (object item in arg)
-                {
-                    message += "Format argument (of type " + item.GetType().FullName + "): " + item + "\n";
-                }
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteLineStringObjectArray(), new object[] { format, arg }, null);
             }
@@ -552,10 +386,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.WriteLine(char[] buffer)";
-                //Create the message, where both the type and value are printed
-                string message = "Raw string: " + new string(buffer) + "\n";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteLineCharArray(), new object[] { buffer }, null);
             }
@@ -567,13 +397,20 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Console.WriteLine(char[] buffer)";
-                //Create the message, where both the type and value are printed
-                string message = "Raw string: " + new string(buffer) + "\n" +
-                    "Selected string: " + new string(buffer).Substring(index, count) + "\n";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteLineCharArrayIntInt(), new object[] { buffer, index, count }, null);
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static void WriteLineHook()
+        {
+            //Enable the thread safe lock, as a launched program can be multi-threaded
+            lock (GenericHookHelper.SyncLock)
+            {
+                Console.WriteLine();
+                //Write the aggregated data to the log and the console
+                GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConsoleWriteLine(), new object[] { }, null);
             }
         }
     }

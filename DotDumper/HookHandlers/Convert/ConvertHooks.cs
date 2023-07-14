@@ -22,8 +22,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("FromBase64StringString");
 
-                //Sets the title for the log
-                string functionName = "Convert.FromBase64String(string s)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConvertFromBase64StringString(), new object[] { s }, output);
             }
@@ -48,8 +46,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("FromBase64CharArrayCharyArrayIntInt");
 
-                //Sets the title for the log
-                string functionName = "Convert.FromBase64CharArray(string s)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ConvertFromBase64CharArrayCharArrayIntInt(), new object[] { inArray, offset, length }, output);
             }

@@ -1284,6 +1284,18 @@ namespace DotDumper.Hooks
             parameterTypes.Add("string");
             return HookManager.GetMethodInfo(type, name, parameterTypes);
         }
+
+        /// <summary>
+        /// Gets the MethodInfo object for Process.Start()
+        /// </summary>
+        /// <returns></returns>
+        public static MethodInfo ProcessStart()
+        {
+            Type type = typeof(Process);
+            string name = "Start";
+            List<string> parameterTypes = new List<string>();
+            return HookManager.GetMethodInfo(type, name, parameterTypes);
+        }
         #endregion
 
         #region Original WebClient methods

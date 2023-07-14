@@ -212,11 +212,12 @@ namespace DotDumper
             //Assume the complete LogEntry instance is not null, the caller should check this
             //The date time stamp is made in the entry's constructor, meaning it's never null
             string functionName = "[no_function_name_found]";
-            if (entry.FunctionName != null)
+            if (entry != null && entry.FunctionName != null)
             {
                 functionName = entry.FunctionName;
             }
             string title = "[" + entry.DateTimeStamp + "] Hook for " + functionName + " hit!\n";
+
             /*
              * The message lay-out for human readable logs is as follows:
              * 
@@ -254,7 +255,13 @@ namespace DotDumper
                 message += "---------Assembly call order----------\n";
                 foreach (AssemblyObject assembly in entry.AssemblyCallOrder)
                 {
-                    message += assembly.Name + " (" + assembly.Hash + ")\n";
+                    message += assembly.Name;
+                    if (assembly.Hash.Equals("[none]", StringComparison.InvariantCultureIgnoreCase) == false)
+                    {
+                        message += " (SHA-256: " + assembly.Hash + ")";
+                    }
+                    message += "\n";
+
                 }
                 message += "--------------------------------------\n\n";
             }
@@ -263,7 +270,8 @@ namespace DotDumper
             if (entry.OriginatingAssemblyName != null &&
                 entry.OriginatingAssemblyVersion != null &&
                 entry.OriginatingAssemblyHash != null &&
-                entry.OriginatingAssemblyResourceNames != null)
+                entry.OriginatingAssemblyResourceNames != null &&
+                entry.OriginatingAssemblyName.Equals("DotDumper", StringComparison.InvariantCultureIgnoreCase) == false)
             {
                 message += "---Originating assembly information---\n";
                 message += "Name: " + entry.OriginatingAssemblyName + "\n";
@@ -271,33 +279,42 @@ namespace DotDumper
                 message += "MD-5: " + entry.OriginatingAssemblyHash.Md5 + "\n";
                 message += "SHA-1: " + entry.OriginatingAssemblyHash.Sha1 + "\n";
                 message += "SHA-256: " + entry.OriginatingAssemblyHash.Sha256 + "\n";
-
-                message += "Resource names:\n";
-                if (entry.OriginatingAssemblyResourceNames.Count == 0)
+                message += "SHA-384: " + entry.OriginatingAssemblyHash.Sha384 + "\n";
+                message += "SHA-512: " + entry.OriginatingAssemblyHash.Sha512 + "\n";
+                if (entry.OriginatingAssemblyHash.TypeRef != null && entry.OriginatingAssemblyHash.TypeRef.Length > 0)
                 {
-                    message += "\t[no resources found]\n";
+                    message += "TypeRef: " + entry.OriginatingAssemblyHash.TypeRef + "\n";
                 }
-                else
+                if (entry.OriginatingAssemblyHash.ImportHash != null && entry.OriginatingAssemblyHash.ImportHash.Length > 0)
                 {
+                    message += "ImportHash: " + entry.OriginatingAssemblyHash.ImportHash + "\n";
+                }
+                if (entry.OriginatingAssemblyHash.AuthenticodeSha256 != null && entry.OriginatingAssemblyHash.AuthenticodeSha256.Length > 0)
+                {
+                    message += "Authenticode (SHA-256 based): " + entry.OriginatingAssemblyHash.AuthenticodeSha256 + "\n";
+                }
+
+                if (entry.OriginatingAssemblyResourceNames != null && entry.OriginatingAssemblyResourceNames.Count > 0)
+                {
+                    message += "Resource names:\n";
                     foreach (string resourceName in entry.OriginatingAssemblyResourceNames)
                     {
                         message += "\t" + resourceName + "\n";
                     }
                 }
+
                 message += "--------------------------------------\n\n";
             }
 
             //Add parent assembly hash
-            message += "---------Parent assembly hash---------\n";
-            if (entry.ParentAssemblyHash != null)
+
+            if (entry.ParentAssemblyHash != null && entry.ParentAssemblyHash.Equals("[none]", StringComparison.InvariantCultureIgnoreCase) == false)
             {
+                message += "---------Parent assembly hash---------\n";
                 message += entry.ParentAssemblyHash;
+                message += "\n--------------------------------------\n\n";
             }
-            else
-            {
-                message += "[no parent assembly found]";
-            }
-            message += "\n--------------------------------------\n\n";
+
 
             //Add argument names, types, and values
             if (entry.FunctionArguments != null && entry.FunctionArguments.Count > 0)
@@ -345,6 +362,20 @@ namespace DotDumper
                     message += "MD-5:  \"" + hash.Md5 + "\"\n";
                     message += "SHA-1:  \"" + hash.Sha1 + "\"\n";
                     message += "SHA-256: \"" + hash.Sha256 + "\"\n";
+                    message += "SHA-384: \"" + hash.Sha384 + "\"\n";
+                    message += "SHA-512: \"" + hash.Sha512 + "\"\n";
+                    if (hash.TypeRef != null && hash.TypeRef.Length > 0)
+                    {
+                        message += "TypeRef: \"" + hash.TypeRef + "\"\n";
+                    }
+                    if (hash.ImportHash != null && hash.ImportHash.Length > 0)
+                    {
+                        message += "ImportHash: \"" + hash.ImportHash + "\"\n";
+                    }
+                    if (hash.AuthenticodeSha256 != null && hash.AuthenticodeSha256.Length > 0)
+                    {
+                        message += "Authenticode (SHA-256 based): \"" + hash.AuthenticodeSha256 + "\"\n";
+                    }
 
                     //If there are more arguments after this, add a new line for readability
                     if ((entry.RelatedFileHashes.Count - 1) > i)

@@ -20,9 +20,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Activator.CreateComInstanceFrom(string assemblyName, string typeName, byte[] hashValue, AssemblyHashAlgorithm hashAlgorithm)";
-
                 HookManager.UnHookByHookName("CreateComInstanceFromHookStringStringByteArrayAssemblyHashAlgorithm");
                 //Call the original function
                 result = Activator.CreateComInstanceFrom(assemblyName, typeName, hashValue, hashAlgorithm);
@@ -95,10 +92,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Activator.CreateInstance(Type type, bool nonPublic)";
-                //Process the given data via the helper class
-                //MethodBaseHooksHelper.Invoke(methodBase, functionName, parameters);
                 HookManager.UnHookByHookName("CreateInstanceHookTypeBool");
                 //Call the original function
                 result = Activator.CreateInstance(type, nonPublic);
@@ -121,10 +114,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Activator.CreateInstance(ActivationContext activationContext)";
-                //Process the given data via the helper class
-                //MethodBaseHooksHelper.Invoke(methodBase, functionName, parameters);
                 HookManager.UnHookByHookName("CreateInstanceHookActivationContext");
                 //Call the original function
                 result = Activator.CreateInstance(activationContext);
@@ -147,7 +136,7 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Double unhook due to 
+                //Double unhook due to internal calling of the function to an overload
                 HookManager.UnHookByHookName("CreateInstanceHookTypeObjectArray");
                 HookManager.UnHookByHookName("CreateInstanceHookTypeBindingFlagsBinderObjectArrayCultureInfoObjectArray");
                 //Call the original function
@@ -172,10 +161,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Activator.CreateInstance(Type type, BindingFlags bindingAttr, Binder binder, object[] args, CultureInfo culture, object[] activationAttributes)";
-                //Process the given data via the helper class
-                //MethodBaseHooksHelper.Invoke(methodBase, functionName, parameters);
                 HookManager.UnHookByHookName("CreateInstanceHookTypeBindingFlagsBinderObjectArrayCultureInfoObjectArray");
                 //Call the original function
                 result = Activator.CreateInstance(assemblyName, typeName);
@@ -223,10 +208,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Activator.CreateInstance(Type type, BindingFlags bindingAttr, Binder binder, object[] args, CultureInfo culture, object[] activationAttributes)";
-                //Process the given data via the helper class
-                //MethodBaseHooksHelper.Invoke(methodBase, functionName, parameters);
                 HookManager.UnHookByHookName("CreateInstanceHookTypeBindingFlagsBinderObjectArrayCultureInfoObjectArray");
                 //Call the original function
                 result = Activator.CreateInstance(type, bindingAttr, binder, args, culture, activationAttributes);
@@ -249,10 +230,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Activator.CreateInstance(string assemblyName, string typeName, bool ignoreCase, BindingFlags bindingAttr, Binder binder, object[] args, CultureInfo culture, object[] activationAttributes)";
-                //Process the given data via the helper class
-                //MethodBaseHooksHelper.Invoke(methodBase, functionName, parameters);
                 HookManager.UnHookByHookName("CreateInstanceHookStringStringBooleanBindingFlagsBinderObjectArrayCultureInfoObjectArray");
                 //Call the original function
                 result = Activator.CreateInstance(assemblyName, typeName, ignoreCase, bindingAttr, binder, args, culture, activationAttributes);
@@ -275,10 +252,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Activator.CreateInstance(ActivationContext activationContext, string[] activationCustomData)";
-                //Process the given data via the helper class
-                //MethodBaseHooksHelper.Invoke(methodBase, functionName, parameters);
                 HookManager.UnHookByHookName("CreateInstanceHookActivationContextStringArray");
                 //Call the original function
                 result = Activator.CreateInstance(activationContext, activationCustomData);
@@ -301,10 +274,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Activator.CreateInstance(string assemblyName, string typeName, object[] activationAttributes)";
-                //Process the given data via the helper class
-                //MethodBaseHooksHelper.Invoke(methodBase, functionName, parameters);
                 HookManager.UnHookByHookName("CreateInstanceHookStringStringObjectArray");
                 //Call the original function
                 result = Activator.CreateInstance(assemblyName, typeName, activationAttributes);
@@ -327,10 +296,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Activator.CreateInstance(AppDomain domain, string assemblyName, string typeName)";
-                //Process the given data via the helper class
-                //MethodBaseHooksHelper.Invoke(methodBase, functionName, parameters);
                 HookManager.UnHookByHookName("CreateInstanceHookAppDomainStringString");
                 //Call the original function
                 result = Activator.CreateInstance(domain, assemblyName, typeName);
@@ -353,10 +318,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Activator.CreateInstance(string assemblyName, string typeName, bool ignoreCase, BindingFlags bindingAttr, Binder binder, object[] args, CultureInfo culture, object[] activationAttributes, Evidence securityInfo)";
-                //Process the given data via the helper class
-                //MethodBaseHooksHelper.Invoke(methodBase, functionName, parameters);
                 HookManager.UnHookByHookName("CreateInstanceHookStringStringBooleanBindingFlagsBinderObjectArrayCultureInfoObjectArrayEvidence");
                 //Call the original function
                 result = Activator.CreateInstance(assemblyName, typeName, ignoreCase, bindingAttr, binder, args, culture, activationAttributes, securityInfo);
@@ -379,10 +340,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Activator.CreateInstance(AppDomain domain, string assemblyName, string typeName, bool ignoreCase, BindingFlags bindingAttr, Binder binder, object[] args, CultureInfo culture, object[] activationAttributes)";
-                //Process the given data via the helper class
-                //MethodBaseHooksHelper.Invoke(methodBase, functionName, parameters);
                 HookManager.UnHookByHookName("CreateInstanceHookAppDomainStringStringBooleanBindingFlagsBinderObjectArrayCultureInfoObjectArray");
                 //Call the original function
                 result = Activator.CreateInstance(domain, assemblyName, typeName, ignoreCase, bindingAttr, binder, args, culture, activationAttributes);
@@ -405,10 +362,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Activator.CreateInstance(AppDomain domain, string assemblyName, string typeName, bool ignoreCase, BindingFlags bindingAttr, Binder binder, object[] args, CultureInfo culture, object[] activationAttributes, Evidence securityAttributes)";
-                //Process the given data via the helper class
-                //MethodBaseHooksHelper.Invoke(methodBase, functionName, parameters);
                 HookManager.UnHookByHookName("CreateInstanceHookAppDomainStringStringBooleanBindingFlagsBinderObjectArrayCultureInfoObjectArrayEvidence");
                 //Call the original function
                 result = Activator.CreateInstance(domain, assemblyName, typeName, ignoreCase, bindingAttr, binder, args, culture, activationAttributes, securityAttributes);
@@ -431,10 +384,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Activator.CreateInstanceFrom(AppDomain domain, string assemblyName, string typeName)";
-                //Process the given data via the helper class
-                //MethodBaseHooksHelper.Invoke(methodBase, functionName, parameters);
                 HookManager.UnHookByHookName("CreateInstanceFromHookAppDomainStringString");
                 //Call the original function
                 result = Activator.CreateInstanceFrom(domain, assemblyFile, typeName);
@@ -457,10 +406,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Activator.CreateInstanceFrom(string assemblyFile, string typeName, bool ignoreCase, BindingFlags bindingAttr, Binder binder, object[] args, CultureInfo culture, object[] activationAttributes, Evidence securityInfo)";
-                //Process the given data via the helper class
-                //MethodBaseHooksHelper.Invoke(methodBase, functionName, parameters);
                 HookManager.UnHookByHookName("CreateInstanceFromHookStringStringBooleanBindingFlagsBinderObjectArrayCultureInfoObjectArrayEvidence");
                 //Call the original function
                 result = Activator.CreateInstanceFrom(assemblyFile, typeName, ignoreCase, bindingAttr, binder, args, culture, activationAttributes, securityInfo);
@@ -483,10 +428,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Activator.CreateInstanceFrom(AppDomain domain, string assemblyFile, string typeName, bool ignoreCase, BindingFlags bindingAttr, Binder binder, object[] args, CultureInfo culture, object[] activationAttributes)";
-                //Process the given data via the helper class
-                //MethodBaseHooksHelper.Invoke(methodBase, functionName, parameters);
                 HookManager.UnHookByHookName("CreateInstanceFromHookAppDomainStringStringBooleanBindingFlagsBinderObjectArrayCultureInfoObjectArray");
                 //Call the original function
                 result = Activator.CreateInstanceFrom(domain, assemblyFile, typeName, ignoreCase, bindingAttr, binder, args, culture, activationAttributes);
@@ -509,10 +450,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Activator.CreateInstanceFrom(AppDomain domain, string assemblyFile, string typeName, bool ignoreCase, BindingFlags bindingAttr, Binder binder, object[] args, CultureInfo culture, object[] activationAttributes, Evidence securityAttributes)";
-                //Process the given data via the helper class
-                //MethodBaseHooksHelper.Invoke(methodBase, functionName, parameters);
                 HookManager.UnHookByHookName("CreateInstanceFromHookAppDomainStringStringBooleanBindingFlagsBinderObjectArrayCultureInfoObjectArrayEvidence");
                 //Call the original function
                 result = Activator.CreateInstanceFrom(domain, assemblyFile, typeName, ignoreCase, bindingAttr, binder, args, culture, activationAttributes, securityAttributes);
@@ -562,10 +499,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Activator.CreateInstanceFrom(AppDomain domain, string assemblyFile, string typeName, bool ignoreCase, BindingFlags bindingAttr, Binder binder, object[] args, CultureInfo culture, object[] activationAttributes, Evidence securityAttributes)";
-                //Process the given data via the helper class
-                //MethodBaseHooksHelper.Invoke(methodBase, functionName, parameters);
                 HookManager.UnHookByHookName("CreateInstanceFromHookStringStringObjectArray");
                 HookManager.UnHookByHookName("CreateInstanceFromHookStringStringBoolBindingFlagsBinderObjectArrayCultureInfoObjectArray");
                 //Call the original function

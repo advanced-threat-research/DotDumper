@@ -17,15 +17,13 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Disable the placed hook
-                HookManager.UnHookByHookName("GetCurrentProcessHook");
+                //Disable the placed hooks
+                HookManager.UnHookAll();
                 //Call the original function
                 process = Process.GetCurrentProcess();
-                //Restore the hook
-                HookManager.HookByHookName("GetCurrentProcessHook");
+                //Restore the hooks
+                HookManager.HookAll();
 
-                //Sets the title for the log
-                string functionName = "Process.GetCurrentProcess()";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ProcessGetCurrentProcess(), new object[] { }, process);
             }
@@ -43,15 +41,13 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Disable the placed hook
-                HookManager.UnHookByHookName("GetProcessByIdHookIntString");
+                //Disable the placed hooks
+                HookManager.UnHookAll();
                 //Call the original function
                 process = Process.GetProcessById(processId, machineName);
-                //Restore the hook
-                HookManager.HookByHookName("GetProcessByIdHookIntString");
+                //Restore the hooks
+                HookManager.HookAll();
 
-                //Sets the title for the log
-                string functionName = "Process.GetProcessById(int processId, string machineName)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ProcessGetProcessByIdIntString(), new object[] { processId, machineName }, process);
             }
@@ -69,15 +65,13 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Disable the placed hook
-                HookManager.UnHookByHookName("GetProcessByIdHookIntString");
+                //Disable the placed hooks
+                HookManager.UnHookAll();
                 //Call the original function
                 process = Process.GetProcessById(processId);
-                //Restore the hook
-                HookManager.HookByHookName("GetProcessByIdHookIntString");
+                //Restore the hooks
+                HookManager.HookAll();
 
-                //Sets the title for the log
-                string functionName = "Process.GetProcessById(int processId)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ProcessGetProcessByIdInt(), new object[] { processId }, process);
             }
@@ -95,15 +89,13 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Disable the placed hook
-                HookManager.UnHookByHookName("GetProcessesHook");
+                //Disable the placed hooks
+                HookManager.UnHookAll();
                 //Call the original function
                 processes = Process.GetProcesses();
-                //Restore the hook
-                HookManager.HookByHookName("GetProcessesHook");
+                //Restore the hooks
+                HookManager.HookAll();
 
-                //Sets the title for the log
-                string functionName = "Process.GetProcesses()";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ProcessGetProcesses(), new object[] { }, processes);
             }
@@ -121,15 +113,13 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Disable the placed hook
-                HookManager.UnHookByHookName("GetProcessesHookString");
+                //Disable the placed hooks
+                HookManager.UnHookAll();
                 //Call the original function
                 processes = Process.GetProcesses(machineName);
-                //Restore the hook
-                HookManager.HookByHookName("GetProcessesHookString");
+                //Restore the hooks
+                HookManager.HookAll();
 
-                //Sets the title for the log
-                string functionName = "Process.GetProcesses(string machineName)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ProcessGetProcessesString(), new object[] { machineName }, processes);
             }
@@ -147,15 +137,13 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Disable the placed hook
-                HookManager.UnHookByHookName("GetProcessesByNameHookString");
+                //Disable the placed hooks
+                HookManager.UnHookAll();
                 //Call the original function
                 processes = Process.GetProcessesByName(processName);
-                //Restore the hook
-                HookManager.HookByHookName("GetProcessesByNameHookString");
+                //Restore the hooks
+                HookManager.HookAll();
 
-                //Sets the title for the log
-                string functionName = "Process.GetProcessesByName(string processName)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ProcessGetProcessesByNameString(), new object[] { processName }, processes);
             }
@@ -173,15 +161,13 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Disable the placed hook
-                HookManager.UnHookByHookName("GetProcessesByNameHookStringString");
+                //Disable the placed hooks
+                HookManager.UnHookAll();
                 //Call the original function
                 processes = Process.GetProcessesByName(processName, machineName);
-                //Restore the hook
-                HookManager.HookByHookName("GetProcessesByNameHookStringString");
+                //Restore the hooks
+                HookManager.HookAll();
 
-                //Sets the title for the log
-                string functionName = "Process.GetProcessesByName(string processName, string machineName)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ProcessGetProcessesByNameStringString(), new object[] { processName, machineName }, processes);
             }
@@ -199,15 +185,13 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Disable the placed hook
-                HookManager.UnHookByHookName("ProcessStartHookStringString");
+                //Disable the placed hooks
+                HookManager.UnHookAll();
                 //Call the original function
                 process = Process.Start(fileName, arguments);
-                //Restore the hook
-                HookManager.HookByHookName("ProcessStartHookStringString");
+                //Restore the hooks
+                HookManager.HookAll();
 
-                //Sets the title for the log
-                string functionName = "Process.Start(string fileName, string arguments)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ProcessStartStringString(), new object[] { fileName, arguments }, process);
             }
@@ -225,16 +209,13 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Disable the placed hook
-                HookManager.UnHookByHookName("ProcessStartHookProcessStartInfo");
+                //Disable the placed hooks
+                HookManager.UnHookAll();
                 //Call the original function
                 process = Process.Start(startInfo);
-                //Restore the hook
-                HookManager.HookByHookName("ProcessStartHookProcessStartInfo");
+                //Restore the hooks
+                HookManager.HookAll();
 
-                //Sets the title for the log
-                string functionName = "Process.Start(ProcessStartInfo startInfo)";
-                //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ProcessStartProcessStartInfo(), new object[] { startInfo }, process);
             }
 
@@ -251,16 +232,13 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Disable the placed hook
-                HookManager.UnHookByHookName("ProcessStartHookString");
+                //Disable the placed hooks
+                HookManager.UnHookAll();
                 //Call the original function
                 process = Process.Start(fileName);
-                //Restore the hook
-                HookManager.HookByHookName("ProcessStartHookString");
+                //Restore the hooks
+                HookManager.HookAll();
 
-                //Sets the title for the log
-                string functionName = "Process.Start(string fileName)";
-                //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ProcessStartString(), new object[] { fileName }, process);
             }
 
@@ -277,15 +255,13 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Disable the placed hook
-                HookManager.UnHookByHookName("ProcessStartHookStringStringStringSecureStringString");
+                //Disable the placed hooks
+                HookManager.UnHookAll();
                 //Call the original function
                 process = Process.Start(fileName, arguments, userName, password, domain);
-                //Restore the hook
-                HookManager.HookByHookName("ProcessStartHookStringStringStringSecureStringString");
+                //Restore the hooks
+                HookManager.HookAll();
 
-                //Sets the title for the log
-                string functionName = "Process.Start(string fileName, string arguments, string userName, SecureString password, string domain)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ProcessStartStringStringStringSecureStringString(), new object[] { fileName, arguments, userName, password, domain }, process);
             }
@@ -303,23 +279,18 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Disable the placed hook
-                HookManager.UnHookByHookName("ProcessStartHookStringStringSecureStringString");
+                //Disable the placed hooks
+                HookManager.UnHookAll();
                 //Call the original function
                 process = Process.Start(fileName, userName, password, domain);
-                //Restore the hook
-                HookManager.HookByHookName("ProcessStartHookStringStringSecureStringString");
+                //Restore the hooks
+                HookManager.HookAll();
 
-                //Sets the title for the log
-                string functionName = "Process.Start(string fileName, string userName, SecureString password, string domain)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ProcessStartStringStringSecureStringString(), new object[] { fileName, userName, password, domain }, process);
             }
             //Return the process object to the caller
             return process;
         }
-
-        //void Kill();
-        //void Close();
     }
 }

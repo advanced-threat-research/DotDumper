@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using DotDumper.Helpers;
 using DotDumper.HookHandlers;
 using DotDumper.Models;
 
@@ -22,35 +20,57 @@ namespace DotDumper.Hooks
         /// <summary>
         /// Adds a hook to the list of hooks, unless the string representation (disregarding the casing) of the original method or the hook is already present in the list. If this is the case, a warning will be printed via the logger.
         /// </summary>
-        /// <param name="originalMethod">The method to hook</param>
-        /// <param name="hookMethod">The hook to execute when the original method is called</param>
-        private static void AddHook(MethodInfo originalMethod, MethodInfo hookMethod)
+        /// <param name="original">The method to hook</param>
+        /// <param name="hook">The hook to execute when the original method is called</param>
+        private static void AddHook(MethodInfo original, MethodInfo hook)
+        {
+            AddHook(new Hook(original, hook));
+        }
+
+        private static void AddHook(UnmanagedMethodInfo original, UnmanagedMethodInfo hook)
+        {
+            AddHook(new Hook(original, hook));
+        }
+
+        private static void AddHook(UnmanagedMethodInfo original, MethodInfo hook)
+        {
+            AddHook(new Hook(original, hook));
+        }
+
+        private static void AddHook(MethodInfo original, UnmanagedMethodInfo hook)
+        {
+            AddHook(new Hook(original, hook));
+        }
+
+        private static void AddHook(Hook hook)
         {
             bool toAdd = true;
-            foreach (Hook hook in Hooks)
+            foreach (Hook currentHook in Hooks)
             {
-                if (hook.CompareOriginal(originalMethod))
+                if (currentHook.CompareOriginal(hook.OriginalMethod))
                 {
-                    string message = "A hook for \"" + hook.OriginalMethod + "\" is already present in the set hooks!\n" +
-                        "\tThe hook that is already placed is named \"" + hook.HookMethod + "\"\n" +
-                        "\tThe hook that was attempted to be added is named \"" + hookMethod.Name + "\"\n" +
+                    string message = "A hook for \"" + currentHook.OriginalMethod + "\" is already present in the set hooks!\n" +
+                        "\tThe hook that is already placed is named \"" + currentHook.HookMethod + "\"\n" +
+                        "\tThe hook that was attempted to be added is named \"" + hook.HookMethod + "\"\n" +
                         "\n";
                     Console.WriteLine(message);
                     toAdd = false;
+                    break;
                 }
-                if (hook.CompareHook(hookMethod))
+                if (currentHook.CompareHook(hook.HookMethod))
                 {
-                    string message = "The hook function \"" + hook.HookMethod + "\" is already used in a different hook!\n" +
-                        "\tThe original function that is hooked is named \"" + hook.OriginalMethod + "\"\n" +
-                        "\tThe original function that was attempted to be added is named \"" + originalMethod.Name + "\"\n" +
+                    string message = "The hook function \"" + currentHook.HookMethod + "\" is already used in a different hook!\n" +
+                        "\tThe original function that is hooked is named \"" + currentHook.OriginalMethod + "\"\n" +
+                        "\tThe original function that was attempted to be added is named \"" + hook.OriginalMethod + "\"\n" +
                         "\n";
                     Console.WriteLine(message);
                     toAdd = false;
+                    break;
                 }
             }
             if (toAdd)
             {
-                Hooks.Add(new Hook(originalMethod, hookMethod));
+                Hooks.Add(hook);
             }
         }
 
@@ -136,64 +156,6 @@ namespace DotDumper.Hooks
             AddHook(OriginalManagedFunctions.ConvertFromBase64StringString(), GetMethodInfo(typeof(ConvertHooks), "FromBase64StringString", null));
 
             AddHook(OriginalManagedFunctions.ConvertFromBase64CharArrayCharArrayIntInt(), GetMethodInfo(typeof(ConvertHooks), "FromBase64CharArrayCharyArrayIntInt", null));
-            #endregion
-
-            #region WebClient hooks
-            //AddHook(OriginalFunctions.WebClientDownloadDataString(), GetMethodInfo(typeof(WebClientHooks), "DownloadDataHookString", null));
-
-            //AddHook(OriginalFunctions.WebClientDownloadDataUri(), GetMethodInfo(typeof(WebClientHooks), "DownloadDataHookUri", null));
-
-            //AddHook(OriginalFunctions.WebClientDownloadStringString(), GetMethodInfo(typeof(WebClientHooks), "DownloadStringHookString", null));
-
-            //AddHook(OriginalFunctions.WebClientDownloadStringUri(), GetMethodInfo(typeof(WebClientHooks), "DownloadStringHookUri", null));
-
-            //AddHook(OriginalFunctions.WebClientDownloadFileStringString(), GetMethodInfo(typeof(WebClientHooks), "DownloadFileHookStringString", null));
-
-            //AddHook(OriginalFunctions.WebClientDownloadFileUriString(), GetMethodInfo(typeof(WebClientHooks), "DownloadFileHookUriString", null));
-
-            //AddHook(OriginalFunctions.WebClientOpenReadString(), GetMethodInfo(typeof(WebClientHooks), "OpenReadHookString", null));
-
-            //AddHook(OriginalFunctions.WebClientOpenReadUri(), GetMethodInfo(typeof(WebClientHooks), "OpenReadHookUri", null));
-
-            //AddHook(OriginalFunctions.WebClientOpenWriteString(), GetMethodInfo(typeof(WebClientHooks), "OpenWriteHookString", null));
-
-            //AddHook(OriginalFunctions.WebClientOpenWriteStringString(), GetMethodInfo(typeof(WebClientHooks), "OpenWriteHookStringString", null));
-
-            //AddHook(OriginalFunctions.WebClientOpenWriteUri(), GetMethodInfo(typeof(WebClientHooks), "OpenWriteHookUri", null));
-
-            //AddHook(OriginalFunctions.WebClientOpenWriteUriString(), GetMethodInfo(typeof(WebClientHooks), "OpenWriteHookUriString", null));
-
-            //AddHook(OriginalFunctions.WebClientUploadDataUriStringByteArray(), GetMethodInfo(typeof(WebClientHooks), "UploadDataHookUriStringByteArray", null));
-
-            //AddHook(OriginalFunctions.WebClientUploadDataStringStringByteArray(), GetMethodInfo(typeof(WebClientHooks), "UploadDataHookStringStringByteArray", null));
-
-            //AddHook(OriginalFunctions.WebClientUploadDataStringByteArray(), GetMethodInfo(typeof(WebClientHooks), "UploadDataHookStringByteArray", null));
-
-            //AddHook(OriginalFunctions.WebClientUploadDataUriByteArray(), GetMethodInfo(typeof(WebClientHooks), "UploadDataHookUriByteArray", null));
-
-            //AddHook(OriginalFunctions.WebClientUploadFileUriStringString(), GetMethodInfo(typeof(WebClientHooks), "UploadFileHookUriStringString", null));
-
-            //AddHook(OriginalFunctions.WebClientUploadFileStringStringString(), GetMethodInfo(typeof(WebClientHooks), "UploadFileHookStringStringString", null));
-
-            //AddHook(OriginalFunctions.WebClientUploadFileUriString(), GetMethodInfo(typeof(WebClientHooks), "UploadFileHookUriString", null));
-
-            //AddHook(OriginalFunctions.WebClientUploadFileStringString(), GetMethodInfo(typeof(WebClientHooks), "UploadFileHookStringString", null));
-
-            //AddHook(OriginalFunctions.WebClientUploadStringStringString(), GetMethodInfo(typeof(WebClientHooks), "UploadStringHookStringString", null));
-
-            //AddHook(OriginalFunctions.WebClientUploadStringUriString(), GetMethodInfo(typeof(WebClientHooks), "UploadStringHookUriString", null));
-
-            //AddHook(OriginalFunctions.WebClientUploadStringStringStringString(), GetMethodInfo(typeof(WebClientHooks), "UploadStringHookStringStringString", null));
-
-            //AddHook(OriginalFunctions.WebClientUploadStringUriStringString(), GetMethodInfo(typeof(WebClientHooks), "UploadStringHookUriStringString", null));
-
-            //AddHook(OriginalFunctions.WebClientUploadValuesUriStringNameValueCollection(), GetMethodInfo(typeof(WebClientHooks), "UploadValuesHookUriStringNameValueCollection", null));
-
-            //AddHook(OriginalFunctions.WebClientUploadValuesStringStringNameValueCollection(), GetMethodInfo(typeof(WebClientHooks), "UploadValuesHookStringStringNameValueCollection", null));
-
-            //AddHook(OriginalFunctions.WebClientUploadValuesUriNameValueCollection(), GetMethodInfo(typeof(WebClientHooks), "UploadValuesHookUriNameValueCollection", null));
-
-            //AddHook(OriginalFunctions.WebClientUploadValuesStringNameValueCollection(), GetMethodInfo(typeof(WebClientHooks), "UploadValuesHookStringNameValueCollection", null));
             #endregion
 
             #region Process hooks
@@ -458,6 +420,8 @@ namespace DotDumper.Hooks
             AddHook(OriginalManagedFunctions.ConsoleWriteLineFloat(), GetMethodInfo(typeof(ConsoleHooks), "WriteLineHookFloat", null));
 
             AddHook(OriginalManagedFunctions.ConsoleWriteLineDouble(), GetMethodInfo(typeof(ConsoleHooks), "WriteLineHookDouble", null));
+
+            AddHook(OriginalManagedFunctions.ConsoleWriteLine(), GetMethodInfo(typeof(ConsoleHooks), "WriteLineHook", null));
             #endregion
 
             #region MethodBase hooks
@@ -513,9 +477,30 @@ namespace DotDumper.Hooks
             AddHook(OriginalManagedFunctions.ActivatorCreateInstanceFromStringStringBoolBindingFlagsBinderObjectArrayCultureInfoObjectArray(), GetMethodInfo(typeof(ActivatorHooks), "CreateInstanceFromHookStringStringBoolBindingFlagsBinderObjectArrayCultureInfoObjectArray", null));
             #endregion
 
-            //TODO the following classes are intresting:
-            //Activator 04794ec7e7eb5c6611aada660fb1716a91e01503fb4703c7d2f2099c089c9017
-            //Marshal
+            #region kernel32.dll hooks
+
+            string hookPath = "DotDumperNative";
+
+            if (IntPtr.Size == 4)
+            {
+                hookPath += "_x86";
+            }
+            else if (IntPtr.Size == 8)
+            {
+                hookPath += "_x64";
+            }
+            hookPath += ".dll";
+
+
+
+            //Working hooks
+            AddHook(OriginalUnmanagedFunctions.Kernel32WriteProcessMemory(), new UnmanagedMethodInfo(hookPath, "WriteProcessMemoryHook", "WriteProcessMemoryHook", null));
+            AddHook(OriginalUnmanagedFunctions.Kernel32CreateProcessW(), new UnmanagedMethodInfo(hookPath, "CreateProcessWHook", "CreateProcessWHook", null));
+            AddHook(OriginalUnmanagedFunctions.Kernel32CreateProcessA(), new UnmanagedMethodInfo(hookPath, "CreateProcessAHook", "CreateProcessAHook", null));
+            AddHook(OriginalUnmanagedFunctions.User32MessageBoxW(), new UnmanagedMethodInfo(hookPath, "MessageBoxW", "MessageBoxWHook", null));
+
+            //Download related API calls
+            #endregion
 
             if (Config.LogHooks)
             {
@@ -588,7 +573,7 @@ namespace DotDumper.Hooks
         /// </summary>
         private static void LogHooks()
         {
-            string title = "Logging all " + Hooks.Count + " loaded hooks";
+            string title = "---------------Logging all " + Hooks.Count + " loaded hooks---------------";
             string message = title + "\n";
             foreach (Hook hook in Hooks)
             {
@@ -596,6 +581,12 @@ namespace DotDumper.Hooks
             }
             message += "\n";
 
+            //Create a nearly empty log entry object with the relevant information
+            //LogEntry entry = new LogEntry(null, null, null, null, null, null, message, null, null, null, null);
+            //The creation of a log entry sets all hooks as it obtains the current time, which needs to be un-set
+            //UnHookAll();
+            //Write the entry to the log
+            //GenericHookHelper._Logger.Log(entry, true, false);
             Console.WriteLine(message);
         }
 

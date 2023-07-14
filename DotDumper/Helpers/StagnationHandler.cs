@@ -1,6 +1,5 @@
 ﻿using System;
 using DotDumper.HookHandlers;
-using System.Runtime.InteropServices;
 using DotDumper.Hooks;
 using DotDumper.Models;
 
@@ -70,40 +69,19 @@ namespace DotDumper.Helpers
         /// </summary>
         public static void SetTime()
         {
-            DateTime dateTime = DateTime.Now;
+            //Declares and initialises the SystemTime structure with a future time
+            InteropFunctions.SystemTime updatedTime = new InteropFunctions.SystemTime
+            {
+                Year = (ushort)(2200),
+                Month = (ushort)12,
+                Day = (ushort)30,
+                Hour = (ushort)12,
+                Minute = (ushort)00,
+                Second = (ushort)0
+            };
+
             //Set the time to next year, forcing the sandbox to time out
-            SystemTime updatedTime = new SystemTime();
-            updatedTime.Year = (ushort)(dateTime.Year + 1);
-            updatedTime.Month = (ushort)12;
-            updatedTime.Day = (ushort)30;
-            updatedTime.Hour = (ushort)12;
-            updatedTime.Minute = (ushort)00;
-            updatedTime.Second = (ushort)0;
-
-            Win32SetSystemTime(ref updatedTime);
+            InteropFunctions.SetSystemTime(ref updatedTime);
         }
-
-        /// <summary>
-        /// The native import of the SetSystemTime function from kernel32.dll
-        /// </summary>
-        /// <param name="sysTime">A reference to an instance of the SystemTime struct</param>
-        /// <returns>True if set correctly, false if not</returns>
-        [DllImport("kernel32.dll", EntryPoint = "SetSystemTime", SetLastError = true)]
-        public extern static bool Win32SetSystemTime(ref SystemTime sysTime);
-
-        /// <summary>
-        /// The struct definition for the SystemTime struct
-        /// </summary>
-        public struct SystemTime
-        {
-            public ushort Year;
-            public ushort Month;
-            public ushort DayOfWeek;
-            public ushort Day;
-            public ushort Hour;
-            public ushort Minute;
-            public ushort Second;
-            public ushort Millisecond;
-        };
     }
 }

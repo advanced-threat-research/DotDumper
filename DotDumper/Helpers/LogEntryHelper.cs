@@ -17,7 +17,7 @@ namespace DotDumper.Helpers
         /// </summary>
         /// <param name="stackTraceOffset">The amount of layers away from the original call flow, based on the caller's position</param>
         /// <param name="ex">The exception to base the log entry object on</param>
-        /// <returns></returns>
+        /// <returns>A log entry based on the given values</returns>
         public static LogEntry Create(int stackTraceOffset, Exception ex)
         {
             stackTraceOffset++;
@@ -26,13 +26,27 @@ namespace DotDumper.Helpers
         }
 
         /// <summary>
+        /// Creates a log entry for an unmanaged function, along with its argument and return values
+        /// </summary>
+        /// <param name="unmanagedMethodInfo">The unmanaged methodinfo object, corresponding to the original function that was hooked</param>
+        /// <param name="parameterValues">An array of objects with the values of the function's arguments</param>
+        /// <param name="returnValue">The value of the function's return value</param>
+        /// <returns>A log entry based on the given values</returns>
+        public static LogEntry Create(UnmanagedMethodInfo unmanagedMethodInfo, object[] parameterValues, object returnValue)
+        {
+            MethodInfo methodInfo = HookManager.GetMethodInfo(typeof(InteropFunctions), unmanagedMethodInfo.MethodName, unmanagedMethodInfo.ParameterTypes);
+            //A negative value for the stack trace, as the wrong value is obtained since this call is invoked based on async information that is shared via the unmanaged function hooks that share via a named pipe 
+            return Create(-1, methodInfo, parameterValues, returnValue);
+        }
+
+        /// <summary>
         /// Creates a log entry based on the given stack trace offset (from the caller's position), method, the method values, and the return value of said method
         /// </summary>
-        /// <param name="stackTraceOffset">The amount of layers away from the original call flow, based on the caller's position</param>
+        /// <param name="stackTraceOffset">The amount of layers away from the original call flow, based on the caller's position. A value less than 0 is used to indicate that the stack trace is to be ignored (done for unmanaged function hooks, as the function is obtained from a different location than the actual call comes from)</param>
         /// <param name="method">The method that is of importance to log</param>
         /// <param name="parameterValues">The values of said method's parameters</param>
         /// <param name="returnValue">The return value of the function (use null if it's a void)</param>
-        /// <returns></returns>
+        /// <returns>A log entry based on the given values</returns>
         public static LogEntry Create(int stackTraceOffset, MethodBase method, object[] parameterValues, object returnValue)
         {
             //Gets a list of arguments based on the given function
@@ -54,10 +68,19 @@ namespace DotDumper.Helpers
                 }
             }
 
-            //Increment the stack trace offset, since this is another function deep into the trace
-            stackTraceOffset++;
-            //Get the stack trace
-            List<string> stackTrace = GenericHookHelper.GetStackTraceRaw(stackTraceOffset);
+            //Declare and initialise the stack trace variable
+            List<string> stackTrace = new List<string>();
+
+            /*
+             * If the value is negative, its a hook for an unmanaged function and the only obtainable stack trace is useless. If it is zero or higher, its a managed hook
+             */
+            if (stackTraceOffset >= 0)
+            {
+                //Increment the stack trace offset, since this is another function deep into the trace
+                stackTraceOffset++;
+                //Get the stack trace
+                stackTrace = GenericHookHelper.GetStackTraceRaw(stackTraceOffset);
+            }
 
             //Get the assembly and assembly object information based on the stack trace
             Tuple<Assembly, List<AssemblyObject>> result = AssemblyMapper.ProcessStackTrace(stackTrace);
@@ -87,12 +110,17 @@ namespace DotDumper.Helpers
             //Get the raw assembly as an unboxed byte array
             byte[] rawAssembly = GenericHookHelper.GetAsByteArray(originatingAssembly);
 
-            //Get the MD-5, SHA-1, and SHA-256 hashes based on the given raw assembly byte array
+            //Get the hashes based on the given raw assembly byte array
             string md5 = Hashes.Md5(rawAssembly);
             string sha1 = Hashes.Sha1(rawAssembly);
             string sha256 = Hashes.Sha256(rawAssembly);
+            string sha384 = Hashes.Sha384(rawAssembly);
+            string sha512 = Hashes.Sha512(rawAssembly);
+            string typeRef = Hashes.TypeRef(rawAssembly);
+            string importHash = Hashes.ImportHash(rawAssembly);
+            string authenticodeSha256 = Hashes.AuthenticodeSha256(rawAssembly);
             //Create a hash object to store the values in
-            Hash originatingAssemblyHash = new Hash(md5, sha1, sha256);
+            Hash originatingAssemblyHash = new Hash(md5, sha1, sha256, sha384, sha512, typeRef, importHash, authenticodeSha256);
 
             //Get the originating assembly version
             string originatingAssemblyVersion = originatingAssembly.GetName().Version.ToString();

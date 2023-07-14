@@ -22,8 +22,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("ChangeExtensionHookStringString");
 
-                //Sets the title for the log
-                string functionName = "Path.ChangeExtension(string path, string extension)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.PathChangeExtensionStringString(), new object[] { path, extension }, output);
             }
@@ -48,8 +46,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("CombineHookStringString");
 
-                //Sets the title for the log
-                string functionName = "Path.Combine(string path1, string path2)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.PathCombineStringString(), new object[] { path1, path2 }, output);
             }
@@ -74,8 +70,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("CombineHookStringStringString");
 
-                //Sets the title for the log
-                string functionName = "Path.Combine(string path1, string path2, string path3)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.PathCombineStringStringString(), new object[] { path1, path2, path3 }, output);
             }
@@ -100,8 +94,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("CombineHookStringStringStringString");
 
-                //Sets the title for the log
-                string functionName = "Path.Combine(string path1, string path2, string path3, string path4)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.PathCombineStringStringStringString(), new object[] { path1, path2, path3, path4 }, output);
             }
@@ -126,8 +118,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("CombineHookStringArray");
 
-                //Sets the title for the log
-                string functionName = "Path.Combine(string[] paths)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.PathCombineStringArray(), new object[] { paths }, output);
             }
@@ -152,8 +142,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("GetDirectoryNameHookString");
 
-                //Sets the title for the log
-                string functionName = "Path.GetDirectoryName(string path)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.PathGetDirectoryNameString(), new object[] { path }, output);
             }
@@ -178,8 +166,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("GetExtensionHookString");
 
-                //Sets the title for the log
-                string functionName = "Path.GetExtension(string path)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.PathGetExtensionString(), new object[] { path }, output);
             }
@@ -204,8 +190,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("GetFileNameHookString");
 
-                //Sets the title for the log
-                string functionName = "Path.GetFileName(string path)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.PathGetFileNameString(), new object[] { path }, output);
             }
@@ -230,8 +214,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("GetFileNameWithoutExtensionHookString");
 
-                //Sets the title for the log
-                string functionName = "Path.GetFileNameWithoutExtension(string path)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.PathGetFileNameWithoutExtensionString(), new object[] { path }, output);
             }
@@ -256,8 +238,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("GetFullPathHookString");
 
-                //Sets the title for the log
-                string functionName = "Path.GetFullPath(string path)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.PathGetFullPathString(), new object[] { path }, output);
             }
@@ -282,8 +262,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("GetPathRootHookString");
 
-                //Sets the title for the log
-                string functionName = "Path.GetPathRoot(string path)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.PathGetPathRootString(), new object[] { path }, output);
             }
@@ -308,8 +286,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("GetRandomFileNameHook");
 
-                //Sets the title for the log
-                string functionName = "Path.GetRandomFileName()";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.PathGetRandomFileName(), new object[] { }, output);
             }
@@ -334,8 +310,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("GetTempFileNameHook");
 
-                //Sets the title for the log
-                string functionName = "Path.GetTempFileName()";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.PathGetTempFileName(), new object[] { }, output);
             }
@@ -360,8 +334,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("GetTempPathHook");
 
-                //Sets the title for the log
-                string functionName = "Path.GetTempPath()";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.PathGetTempPath(), new object[] { }, output);
             }

@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using DotDumper.Helpers;
+using DotDumper.Models;
 
 namespace DotDumper.Hooks
 {
@@ -48,12 +49,12 @@ namespace DotDumper.Hooks
         public string OriginalMethod { get; private set; }
 
         /// <summary>
-        /// The method which is called instead of the original MethodInfo's name
+        /// The method which is called instead of the original method
         /// </summary>
         public string HookMethod { get; private set; }
 
         /// <summary>
-        /// Gets the compact name of the hook, which equals
+        /// The method which is called instead of the original MethodInfo's name
         /// </summary>
         public string CompactHookMethod { get; private set; }
 
@@ -93,6 +94,84 @@ namespace DotDumper.Hooks
             HookMethod = Serialise.Method(hookMethod);
             HookMethodPointer = hookMethod.MethodHandle.GetFunctionPointer();
             CompactHookMethod = hookMethod.Name;
+        }
+
+        /// <summary>
+        /// Creates a hook object, which requires two non-null UnmanagedMethodInfo objects. The hook is not set upon the creation of this object. To set and remove a hook, use the SetHook and UnHook methods in this class respectively.
+        /// </summary>
+        /// <param name="originalMethod">The original method, which is to be replaced by the hookMethod</param>
+        /// <param name="hookMethod">The hook to replace the originalMethod</param>
+        public Hook(UnmanagedMethodInfo originalMethod, UnmanagedMethodInfo hookMethod)
+        {
+            //Checks if either of the arguments are null, throwing an error if one or more conditions are true
+            if (originalMethod == null || hookMethod == null)
+            {
+                throw new ArgumentException("Some provided hook arguments are invalid!");
+            }
+
+            //Sets the original bytes variable to null, meaning the original method is not hooked
+            originalBytes = null;
+
+            //Sets the variables in the class for later use
+            OriginalMethod = originalMethod.FullMethodName;
+            OriginalMethodPointer = originalMethod.Pointer;
+            HookMethod = hookMethod.FullMethodName;
+            HookMethodPointer = hookMethod.Pointer;
+            CompactHookMethod = hookMethod.MethodName;
+        }
+
+        /// <summary>
+        /// Creates a hook object, which requires a non-null UnmanagedMethodInfo object and a non-null MethodInfo object. The hook is not set upon the creation of this object. To set and remove a hook, use the SetHook and UnHook methods in this class respectively.
+        /// </summary>
+        /// <param name="originalMethod">The original method, which is to be replaced by the hookMethod</param>
+        /// <param name="hookMethod">The hook to replace the originalMethod</param>
+        public Hook(UnmanagedMethodInfo originalMethod, MethodInfo hookMethod)
+        {
+            //Checks if either of the arguments are null, throwing an error if one or more conditions are true
+            if (originalMethod == null || hookMethod == null)
+            {
+                throw new ArgumentException("Some provided hook arguments are invalid!");
+            }
+
+            //Sets the original bytes variable to null, meaning the original method is not hooked
+            originalBytes = null;
+
+            //Prepares the method for execution within a constrained execution region
+            RuntimeHelpers.PrepareMethod(hookMethod.MethodHandle);
+
+            //Sets the variables in the class for later use
+            OriginalMethod = originalMethod.FullMethodName;
+            OriginalMethodPointer = originalMethod.Pointer;
+            HookMethod = Serialise.Method(hookMethod);
+            HookMethodPointer = hookMethod.MethodHandle.GetFunctionPointer();
+            CompactHookMethod = hookMethod.Name;
+        }
+
+        /// <summary>
+        /// Creates a hook object, which requires a non-null MethodInfo object and a non-null UnmanagedMethodInfo object. The hook is not set upon the creation of this object. To set and remove a hook, use the SetHook and UnHook methods in this class respectively.
+        /// </summary>
+        /// <param name="originalMethod">The original method, which is to be replaced by the hookMethod</param>
+        /// <param name="hookMethod">The hook to replace the originalMethod</param>
+        public Hook(MethodInfo originalMethod, UnmanagedMethodInfo hookMethod)
+        {
+            //Checks if either of the arguments are null, throwing an error if one or more conditions are true
+            if (originalMethod == null || hookMethod == null)
+            {
+                throw new ArgumentException("Some provided hook arguments are invalid!");
+            }
+
+            //Sets the original bytes variable to null, meaning the original method is not hooked
+            originalBytes = null;
+
+            //Prepares the method for execution within a constrained execution region
+            RuntimeHelpers.PrepareMethod(originalMethod.MethodHandle);
+
+            //Sets the variables in the class for later use
+            OriginalMethod = Serialise.Method(originalMethod);
+            OriginalMethodPointer = originalMethod.MethodHandle.GetFunctionPointer();
+            HookMethod = hookMethod.FullMethodName;
+            HookMethodPointer = hookMethod.Pointer;
+            CompactHookMethod = hookMethod.MethodName;
         }
 
         /// <summary>

@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using DotDumper.HookHandlers;
 using DotDumper.Models;
 
@@ -192,93 +191,13 @@ namespace DotDumper.Helpers
             //Initialise the list of related files
             List<Hash> files = new List<Hash>();
             //Initialise the data variable
-            string data = "{ ";
+            string data = "";
 
             //Any type of collection with a length of more than 100 indices is saved to disk, as converting and printing large arrays can consume a lot of time
             if (((IList)collection).Count > 100)
             {
-                List<byte> bytes = new List<byte>();
-
-                for (int i = 0; i < ((IList)collection).Count; i++)
-                {
-                    if (((IList)collection) is char[])
-                    {
-                        char c = (char)((IList)collection)[i];
-                        byte[] temp = Encoding.UTF8.GetBytes("" + c);
-                        bytes.AddRange(temp);
-                    }
-                    else if (((IList)collection) is string[])
-                    {
-                        string s = (string)((IList)collection)[i];
-                        byte[] temp = Encoding.UTF8.GetBytes(s);
-                        bytes.AddRange(temp);
-                    }
-                    else if (((IList)collection) is bool[])
-                    {
-                        bool b = (bool)((IList)collection)[i];
-                        if (b)
-                        {
-                            bytes.Add(1);
-                        }
-                        else
-                        {
-                            bytes.Add(0);
-                        }
-                    }
-                    else if (((IList)collection) is byte[])
-                    {
-                        bytes.Add((byte)((IList)collection)[i]);
-                    }
-                    else if (((IList)collection) is sbyte[])
-                    {
-                        byte myByte = (byte)((IList)collection)[i];
-                        bytes.Add(myByte);
-                    }
-                    else if (((IList)collection) is decimal[])
-                    {
-                        //TODO store numbers properly, if done as dotnet memory streams no loss occurs, and no significant latency is added
-                    }
-                    else if (((IList)collection) is double[])
-                    {
-
-                    }
-                    else if (((IList)collection) is float[])
-                    {
-
-                    }
-                    else if (((IList)collection) is int[])
-                    {
-
-                    }
-                    else if (((IList)collection) is uint[])
-                    {
-
-                    }
-                    else if (((IList)collection) is long[])
-                    {
-
-                    }
-                    else if (((IList)collection) is ulong[])
-                    {
-
-                    }
-                    else if (((IList)collection) is short[])
-                    {
-
-                    }
-                    else if (((IList)collection) is ushort[])
-                    {
-
-                    }
-                    else if (((IList)collection) is object[])
-                    {
-                        bytes.AddRange(Encoding.UTF8.GetBytes(((IList)collection)[i].ToString()));
-                    }
-                }
-
                 //Save the file, which returns a tuple with the path to the file, and a hash object with the MD-5, SHA-1, and SHA-256 hash of the file, where the file name is the SHA-256 hash of the given content
-                Tuple<string, Hash> result = GenericHookHelper.SaveFile(bytes.ToArray());
-                //Tuple<string, Hash> result = GenericHookHelper.SaveFile(Encoding.UTF8.GetBytes(output));
+                Tuple<string, Hash> result = GenericHookHelper.SaveFile((byte[])collection);
                 //Add it to the list of files
                 if (ContainsHash(files, result.Item2) == false)
                 {
@@ -350,7 +269,7 @@ namespace DotDumper.Helpers
                 }
             }
             //Remove the last comma and space, after which a curly bracket is appended
-            data = data.Substring(0, data.Length - 2) + " }";
+            data = data.Substring(0, data.Length - 2);
             //Return the value as a tuple
             return Tuple.Create(data, files);
         }

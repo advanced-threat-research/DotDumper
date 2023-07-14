@@ -14,8 +14,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Environment.Exit(int exitCode)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.EnvironmentExitInt(), new object[] { exitCode }, null);
 
@@ -44,8 +42,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("ExpandEnvironmentVariablesHookString");
 
-                //Sets the title for the log
-                string functionName = "Environment.ExpandEnvironmentVariables(string name)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.EnvironmentExpandEnvironmentVariablesString(), new object[] { name }, output);
             }
@@ -60,8 +56,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Environment.FailFast(string message, Exception exception)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.EnvironmentFailFastStringException(), new object[] { message, exception }, null);
 
@@ -80,8 +74,6 @@ namespace DotDumper.HookHandlers
             //Enable the thread safe lock, as a launched program can be multi-threaded
             lock (GenericHookHelper.SyncLock)
             {
-                //Sets the title for the log
-                string functionName = "Environment.FailFast(string message)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.EnvironmentFailFastString(), new object[] { message }, null);
 
@@ -113,8 +105,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("GetCommandLineArgsHook");
 
-                //Sets the title for the log
-                string functionName = "Environment.GetCommandLineArgs()";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.EnvironmentGetCommandLineArgs(), new object[] { }, output);
             }
@@ -139,8 +129,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("GetEnvironmentVariableHookStringEnvironmentVariableTarget");
 
-                //Sets the title for the log
-                string functionName = "Environment.GetEnvironmentVariable(string variable, EnvironmentVariableTarget target)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.EnvironmentGetEnvironmentVariableStringEnvironmentVariableTarget(), new object[] { variable, target }, output);
             }
@@ -165,8 +153,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("GetEnvironmentVariablesHookString");
 
-                //Sets the title for the log
-                string functionName = "Environment.GetEnvironmentVariable(string variable)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.EnvironmentGetEnvironmentVariableString(), new object[] { variable }, output);
             }
@@ -191,8 +177,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("GetEnvironmentVariablesHookEnvironmentVariableTarget");
 
-                //Sets the title for the log
-                string functionName = "Environment.GetEnvironmentVariables(EnvironmentVariableTarget target)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.EnvironmentGetEnvironmentVariablesEnvironmentVariableTarget(), new object[] { target }, output);
             }
@@ -217,8 +201,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("GetEnvironmentVariablesHook");
 
-                //Sets the title for the log
-                string functionName = "Environment.GetEnvironmentVariables()";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.EnvironmentGetEnvironmentVariables(), new object[] { }, output);
             }
@@ -243,8 +225,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("GetFolderPathHookSpecialFolderSpecialFolderOption");
 
-                //Sets the title for the log
-                string functionName = "Environment.GetFolderPath(SpecialFolder folder, SpecialFolderOption option)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.EnvironmentGetFolderPathSpecialFolderSpecialFolderOption(), new object[] { folder, option }, output);
             }
@@ -269,8 +249,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("GetFolderPathHookSpecialFolder");
 
-                //Sets the title for the log
-                string functionName = "Environment.GetFolderPath(SpecialFolder folder)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.EnvironmentGetFolderPathSpecialFolder(), new object[] { folder }, output);
             }
@@ -295,8 +273,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("GetLogicalDrivesHook");
 
-                //Sets the title for the log
-                string functionName = "Environment.GetLogicalDrives()";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.EnvironmentGetLogicalDrives(), new object[] { }, output);
             }
@@ -318,8 +294,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("SetEnvironmentVariableHookStringStringEnvironmentVariableTarget");
 
-                //Sets the title for the log
-                string functionName = "SetEnvironmentVariable(string variable, string value, EnvironmentVariableTarget target)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.EnvironmentSetEnvironmentVariableStringStringEnvironmentVariableTarget(), new object[] { variable, value, target }, null);
             }
@@ -338,8 +312,6 @@ namespace DotDumper.HookHandlers
                 //Restore the hook
                 HookManager.HookByHookName("SetEnvironmentVariableHookStringStringEnvironmentVariableTarget");
 
-                //Sets the title for the log
-                string functionName = "SetEnvironmentVariable(string variable, string value)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.EnvironmentSetEnvironmentVariableStringString(), new object[] { variable, value }, null);
             }
@@ -358,9 +330,6 @@ namespace DotDumper.HookHandlers
                 //Call the original function
                 result = OriginalManagedFunctions.EnvironmentGetResourceFromDefaultString().Invoke(null, new object[] { key });
 
-
-                //Sets the title for the log
-                string functionName = "SetEnvironmentVariable(string variable, string value)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.LogSampleCall(1, OriginalManagedFunctions.EnvironmentGetResourceFromDefaultString(), new object[] { key }, result);
                 //Restore the hook

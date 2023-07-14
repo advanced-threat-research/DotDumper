@@ -22,14 +22,12 @@ namespace DotDumper.HookHandlers
                 if (Config.SleepSkip == false)
                 {
                     //Disable the placed hook
-                    HookManager.UnHookByHookName("SleepHookInt");
+                    HookManager.UnHookAll();
                     //Call the original function
                     Thread.Sleep(millisecondsTimeout);
                     //Restore the hook
-                    HookManager.HookByHookName("SleepHookInt");
+                    HookManager.HookAll();
                 }
-                //Sets the title for the log
-                string functionName = "Thread.Sleep(int millisecondsTimeout)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ThreadSleepInt(), new object[] { millisecondsTimeout }, null);
             }
@@ -45,15 +43,13 @@ namespace DotDumper.HookHandlers
                 if (Config.SleepSkip == false)
                 {
                     //Disable the placed hook
-                    HookManager.UnHookByHookName("SleepHookTimeSpan");
+                    HookManager.UnHookAll();
                     //Call the original function
                     Thread.Sleep(timeout);
                     //Restore the hook
-                    HookManager.HookByHookName("SleepHookTimeSpan");
+                    HookManager.HookAll();
                 }
 
-                //Sets the title for the log
-                string functionName = "Thread.Sleep(TimeSpan timeout)";
                 //Write the aggregated data to the log and the console
                 GenericHookHelper._Logger.Log(1, OriginalManagedFunctions.ThreadSleepTimeSpan(), new object[] { timeout }, null);
             }

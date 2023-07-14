@@ -13,6 +13,11 @@ namespace DotDumper.Helpers
     class MissedAssemblyDumper
     {
         /// <summary>
+        /// A list which contains the (partial) names of the assemblies to exclude during periodic dumping
+        /// </summary>
+        public static List<string> ExcludedAssemblies { get; set; }
+
+        /// <summary>
         /// SHA-256 hashes of raw Assembly objects (their byte[] representation) that have been written to the disk during the execution of this run of DotDumper
         /// </summary>
         public static List<string> AssemblyHashes { get; set; }
@@ -22,8 +27,17 @@ namespace DotDumper.Helpers
         /// </summary>
         static MissedAssemblyDumper()
         {
-            //Initialise the list
+            //Initialise the lists
             AssemblyHashes = new List<string>();
+            ExcludedAssemblies = new List<string>();
+
+            //Populate the list
+            ExcludedAssemblies.Add("dotdumper");
+            ExcludedAssemblies.Add("penet");
+            ExcludedAssemblies.Add("system.memory");
+            ExcludedAssemblies.Add("system.runtime.compilerservices.unsafe");
+            ExcludedAssemblies.Add("system.numerics.vectors");
+            ExcludedAssemblies.Add("microsoft.generatedcode");
         }
 
         /// <summary>
@@ -59,9 +73,8 @@ namespace DotDumper.Helpers
             //Iterate over all assemblies within the current domain
             foreach (Assembly assembly in assemblies)
             {
-                //Omit framework related objects, as well as DotDumper itself
-                if (assembly.GlobalAssemblyCache ||
-                    assembly.GetName().FullName.ToLowerInvariant().Contains("dotdumper"))
+                //Omit DotDumper itself, as well as used (DotNet Framework related) libraries 
+                if (ExcludeAssembly(assembly))
                 {
                     continue;
                 }
@@ -84,7 +97,7 @@ namespace DotDumper.Helpers
                         AssemblyHashes.Add(result.Item2.Sha256);
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     //Ignore errors when trying to save an assembly object in its raw form. In some cases, DotNet Framework related assembly objects cause errors when attempting to save them, i.e. when they are dynamically generated
                 }
@@ -100,6 +113,42 @@ namespace DotDumper.Helpers
             }
             //Set all hooks prior to returning to the caller
             HookManager.HookAll();
+        }
+
+        /// <summary>
+        /// Checks if the given assembly is to be excluded or not. It will be if either of the following is true: the given assembly object is null, the given assembly is part of the global assembly cache, or if the fullname matches (in full or partially) the name of any of the names in the exclusion list.
+        /// </summary>
+        /// <param name="assembly">The assembly to check for</param>
+        /// <returns>True if the assembly is to be excluded, false if not</returns>
+        private static bool ExcludeAssembly(Assembly assembly)
+        {
+            //If the given assembly object is null, it is to be excluded
+            if (assembly == null)
+            {
+                return true;
+            }
+
+            //Excludes the assembly if it's part of the global assembly cache
+            if (assembly.GlobalAssemblyCache)
+            {
+                return true;
+            }
+
+            //Get the assembly name in lower case
+            string assemblyName = assembly.GetName().FullName.ToLowerInvariant();
+
+            //Iterate over all excluded assembly names
+            foreach (string excludedName in ExcludedAssemblies)
+            {
+                //If the current assembly name (in lower case) contains the excluded name (also in lower case), it is to be skipped
+                if (assemblyName.Contains(excludedName.ToLowerInvariant()))
+                {
+                    return true;
+                }
+            }
+
+            //The assembly is not to be skipped if its not meeting any of the skip criteria
+            return false;
         }
     }
 }

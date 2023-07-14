@@ -70,7 +70,7 @@ namespace DotDumper.Models
         public List<AssemblyObject> AssemblyCallOrder { get; set; }
 
         /// <summary>
-        /// Creates a LogEntry object, which the logger uses to log the details within the object in several formats
+        /// Creates a LogEntry object, which the logger uses to log the details within the object in several formats. NOTE: ALL HOOKS WILL BE SET AFTER THIS OBJECT HAS BEEN CREATED!
         /// </summary>
         /// <param name="originatingAssemblyName">The name of the assembly object the call originated from</param>
         /// <param name="originatingAssemblyHash">The hash object which contains the MD-5, SHA-1, and SHA-256 hashes of the assembly object where the call originated from</param>
@@ -100,7 +100,7 @@ namespace DotDumper.Models
         }
 
         /// <summary>
-        /// DO NOTE USE THIS CONSTRUCTOR! This is an empty constructor to be able to serialise the object, which is its sole purpose!
+        /// DO NOTE USE THIS CONSTRUCTOR! This is an empty constructor to be able to serialise the object, which is its sole purpose! NOTE: ALL HOOKS ARE SET AFTER THIS CONSTRUCTOR HAS BEEN CALLED!
         /// </summary>
         public LogEntry()
         {

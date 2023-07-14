@@ -18,7 +18,7 @@ namespace DotDumper
         /// <summary>
         /// The description for the sample path
         /// </summary>
-        public const string SamplePathDescription = "The complete path to the file to launch. This is the only mandatory argument, if the provided file has\n\t\tan entry point";
+        public const string SamplePathDescription = "The complete path to the file to launch. This is the only mandatory argument, if the provided file has\n\t\tan entry point. Note that providing only a single CLI argument with the file's location also works!";
 
         /// <summary>
         /// The marker for the logging folder name (equals "-log")
@@ -28,7 +28,7 @@ namespace DotDumper
         /// <summary>
         /// The description of the logging folder name
         /// </summary>
-        public const string LoggingFolderNameDescription = "The name of the folder to place artifacts in, which will be placed within the same folder as the given sample.\n\t\tIf this argument is missing, the sample's file name will be used.";
+        public const string LoggingFolderNameDescription = "The name of the folder to place artifacts in, which will be placed within the same folder as DotDumper.\n\t\tIf this argument is missing, the sample's file name will be used.";
 
         /// <summary>
         /// The marker for the deprecated function inclusion/exclusion
@@ -239,6 +239,41 @@ namespace DotDumper
         }
 
         /// <summary>
+        /// Checks (in the listed order) if the given value is a file in the current directory, the directory of DotDumper, or if it is a full path.
+        /// </summary>
+        /// <param name="value">The (partial) path and file name of the target file</param>
+        private static void CheckFile(string value)
+        {
+            //Check if the sample is located in the current working directory
+            string filePath = Directory.GetCurrentDirectory() + @"\" + value;
+            if (File.Exists(filePath))
+            {
+                Config.SamplePath = filePath;
+            }
+
+            //Check if the sample is located in the same folder as DotDumper
+            filePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + @"\" + value;
+            if (File.Exists(filePath))
+            {
+                Config.SamplePath = filePath;
+            }
+
+            //Check if a full path is given, but only after the two other defined directions have been checked, as the Assembly object can only be loaded with a full path, not a relative one
+            if (File.Exists(value))
+            {
+                Config.SamplePath = value;
+            }
+
+            //Only throw the exception if the sample path hasn't been set (meaning the sample hasn't been found)
+            if (Config.SamplePath == null)
+            {
+                //Throw an error if none of the above options results in a match with a file on the user's file system
+                throw new Exception("The provided sample path at \"" + value + "\" does not exist, and cannot be found in the current working directory nor in DotDumper's folder!");
+            }
+
+        }
+
+        /// <summary>
         /// Parses the arguments and sets the config fields that need to be updated based on the arguments. The checks afterwards ensure that only correct combinations of arguments are allowed, or an error is thrown.
         /// </summary>
         /// <param name="args"></param>
@@ -246,6 +281,34 @@ namespace DotDumper
         {
             //Check if the help marker is provided. If so, this function does not return
             CheckHelp(args);
+
+            /*
+             * Ensure that a single argument leading to the path is possible, when the size of args equals 1, 
+             * it is to be redefined as an array with the size of two, where the first argument is "-file"
+             */
+            try
+            {
+                //Only attempt this if there is a single argument
+                if (args.Length == 1)
+                {
+                    //Call the check file function, which throws an exception if it fails
+                    CheckFile(args[0]);
+                    /*
+                     * If this code is reached, the function call above was successful, otherwise I'd throw an exception.
+                     * Because of that, the normal CLI parsing can continue if the string array is set again, with the file
+                     * path marker as the first argument, and its value as the second, as if it were done manually
+                     */
+                    args = new string[] { SamplePathMarker, args[0] };
+                }
+            }
+            catch (Exception)
+            {
+                /*
+                 * The sole argument was not equal to the file path marker. There is no need to handle this error, other than
+                 * ignoring it.
+                 */
+            }
+
 
             //Open the try block to handle wrong argument exceptions
             try
@@ -267,31 +330,7 @@ namespace DotDumper
                         if (IsEqual(arg, SamplePathMarker))
                         {
 
-                            //Check if the sample is located in the current working directory
-                            string filePath = Directory.GetCurrentDirectory() + @"\" + value;
-                            if (File.Exists(filePath))
-                            {
-                                Config.SamplePath = filePath;
-                                continue;
-                            }
-
-                            //Check if the sample is located in the same folder as DotDumper
-                            filePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + @"\" + value;
-                            if (File.Exists(filePath))
-                            {
-                                Config.SamplePath = filePath;
-                                continue;
-                            }
-
-                            //Check if a full path is given, but only after the two other defined directions have been checked, as the Assembly object can only be loaded with a full path, not a relative one
-                            if (File.Exists(value))
-                            {
-                                Config.SamplePath = value;
-                                continue;
-                            }
-
-                            //Throw an error if none of the above options results in a match with a file on the user's file system
-                            throw new Exception("The provided sample path at \"" + value + "\" does not exist, and cannot be found in the current working directory nor in DotDumper's folder!");
+                            CheckFile(value);
                         }
                         else if (IsEqual(arg, LoggingFolderNameMarker))
                         {
@@ -303,7 +342,7 @@ namespace DotDumper
                             {
                                 Config.IncludeDeprecatedFunctions = Convert.ToBoolean(value);
                             }
-                            catch (Exception ex)
+                            catch (Exception)
                             {
                                 throw new Exception("The boolean to determine if deprecated functions should also be hooked is not a valid boolean: \"" + value + "\"!");
                             }
@@ -314,7 +353,7 @@ namespace DotDumper
                             {
                                 Config.LogHooks = Convert.ToBoolean(value);
                             }
-                            catch (Exception ex)
+                            catch (Exception)
                             {
                                 throw new Exception("The boolean to determine if the hooks should be logged is not a valid boolean: \"" + value + "\"!");
                             }
@@ -330,7 +369,7 @@ namespace DotDumper
                                 }
                                 Config.RaceConditionDueTime = raceConditionTime;
                             }
-                            catch (Exception ex)
+                            catch (Exception)
                             {
                                 throw new Exception("The integer to determine the duration of the time the timer should wait before rehooking invoke related functions is not a valid integer with a size of more than zero: \"" + value + "\"!");
                             }
@@ -341,7 +380,7 @@ namespace DotDumper
                             {
                                 Config.OverrideEntryPoint = Convert.ToBoolean(value);
                             }
-                            catch (Exception ex)
+                            catch (Exception)
                             {
                                 throw new Exception("The boolean to determine if a user-specified entry point should be used is not a valid boolean: \"" + value + "\"!");
                             }
@@ -369,7 +408,7 @@ namespace DotDumper
                                 }
                                 PayloadArgumentCount = argCount;
                             }
-                            catch (Exception ex)
+                            catch (Exception)
                             {
                                 throw new Exception("The integer that indicates the amount of arguments the function requires is not a valid integer that is bigger than one: \"" + value + "\"!");
                             }
@@ -380,7 +419,7 @@ namespace DotDumper
                             {
                                 Config.SleepSkip = Convert.ToBoolean(value);
                             }
-                            catch (Exception ex)
+                            catch (Exception)
                             {
                                 throw new Exception("The boolean to determine if sleep calls need to be skipped is not a valid boolean: \"" + value + "\"!");
                             }
@@ -391,7 +430,7 @@ namespace DotDumper
                             {
                                 Config.PrintLogsToConsole = Convert.ToBoolean(value);
                             }
-                            catch (Exception ex)
+                            catch (Exception)
                             {
                                 throw new Exception("The boolean to determine if logs need to be printed to the console window is not a valid boolean: \"" + value + "\"!");
                             }
@@ -403,7 +442,7 @@ namespace DotDumper
                 //If no sample was provided, an error is thrown
                 if (Config.SamplePath == null)
                 {
-                    throw new Exception("No file has been provided!");
+                    throw new Exception("No file has been provided! Use \"" + SamplePathMarker + "\" to specify the file, or use \"" + HelpMarker + "\" to show the help menu!");
                 }
                 //If the name of the logger folder is not provided, the name of the given sample is used. The sample exists and is not null, as previous checks already ensured that
                 if (Config.LoggerFolder == null)
@@ -451,7 +490,7 @@ namespace DotDumper
             }
             catch (Exception ex) //Any thrown exception is caught, printed to the standard output, after which DotDumper waits for any key to exit
             {
-                Console.WriteLine("[ERROR] " + ex.Message);
+                Console.WriteLine("[ERROR] " + ex.Message + "\n\nPress any key to exit...");
                 Console.ReadKey();
                 Environment.Exit(0);
             }
@@ -491,7 +530,7 @@ namespace DotDumper
                 string element = args[index + 1];
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -527,9 +566,6 @@ namespace DotDumper
                 string type = splitted[0].ToLowerInvariant();
                 //Get the value of the given argument
                 string value = splitted[1];
-
-                Console.WriteLine("type: " + type);
-                Console.WriteLine("value: " + value);
 
                 //Handle any type of supported variables
                 switch (type)

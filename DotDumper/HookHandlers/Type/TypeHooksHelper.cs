@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Reflection;
 using DotDumper.Helpers;
+using DotDumper.Hooks;
 using DotDumper.Models;
 
 namespace DotDumper.HookHandlers
@@ -10,16 +11,19 @@ namespace DotDumper.HookHandlers
     {
         public static void InvokeMemberHandler(string functionName, Type type, string name, BindingFlags invokeAttr, Binder binder, object target, object[] args, CultureInfo culture)
         {
-            int offset = 2;
-            string message = GenericHookHelper.GetStackTraceAndAssemblyMapping(offset);
-
             MethodInfo methodInfo = GetMethodInfo(type, name, args);
             LogEntry entry = null;
             if (methodInfo == null)
             {
                 string fullName = type.FullName + "." + name;
-                //TODO fix missing logging if the function cannot be found
-                //entry = new LogEntry(null, null, null, null, null, relatedFileHashes, name, args, returnValue, stackTrace, assemblyCallOrder);
+                if (culture == null)
+                {
+                    methodInfo = OriginalManagedFunctions.TypeInvokeMemberStringBindingFlagsBinderObjectObjectArray();
+                }
+                else
+                {
+                    methodInfo = OriginalManagedFunctions.TypeInvokeMemberStringBindingFlagsBinderObjectObjectArrayCultureInfo();
+                }
             }
             else
             {
