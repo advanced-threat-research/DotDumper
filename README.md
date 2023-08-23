@@ -1,7 +1,7 @@
 <img src="images/DotDumper.png" alt="The DotDumper logo, a dumping truck" width="610" height="414" />
 
 # DotDumper
-An automatic unpacker and logger for DotNet Framework targeting files! This tool has been unveiled at [Black Hat USA 2022](https://www.blackhat.com/us-22/arsenal/schedule/index.html#dotdumper-automatically-unpacking-dotnet-based-malware-27846).
+An automatic unpacker and logger for DotNet Framework targeting files! This tool has been unveiled at [Black Hat USA 2022](https://www.blackhat.com/us-22/arsenal/schedule/index.html#dotdumper-automatically-unpacking-dotnet-based-malware-27846). At [Black Hat Asia 2023](https://www.blackhat.com/asia-23/arsenal/schedule/index.html#dotdumper-automatically-unpacking-dotnet-based-malware-31071), [DotDumperGUI](https://github.com/advanced-threat-research/DotDumperGUI) and [DotDumperNative](https://github.com/advanced-threat-research/DotDumperNative) were published, along with version 1.1-stable of DotDumper. These three tools are meant to be used together, where DotDumper 1.1-stable requires DotDumperNative's DLLs to be present, while DotDumperGUI is meant as a graphical user-interface to open and filter the JSON output from DotDumper runs.
 
 The automatic detection and classification of any given file in a reliable manner is often considered the holy grail of malware analysis. The trials and tribulations to get there are plenty, which is why the creation of such a system is held in high regard. When it comes to DotNet targeting binaries, our new open-source tool DotDumper aims to assist in several of the crucial steps along the way: logging (in-memory) activity, dumping interesting memory segments, and extracting characteristics from the given sample.
 
